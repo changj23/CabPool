@@ -415,51 +415,61 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020021;
     }
     public static final class id {
-        public static final int action_settings=0x7f07002a;
+        public static final int action_settings=0x7f070034;
+        public static final int birthday=0x7f07002d;
         public static final int book_now=0x7f070010;
+        public static final int button_submit=0x7f070017;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
-        public static final int cancelOfferButton=0x7f070023;
+        public static final int cancelOfferButton=0x7f07002a;
         public static final int classic=0x7f070011;
-        public static final int createOffer=0x7f070022;
-        public static final int edit_profile=0x7f07002b;
-        public static final int female=0x7f070027;
-        public static final int filtersTitle=0x7f07001b;
-        public static final int genderText=0x7f07001c;
-        public static final int gender_spinner=0x7f07001d;
+        public static final int createOffer=0x7f070029;
+        public static final int credit_card_num=0x7f070030;
+        public static final int edit_profile=0x7f070035;
+        public static final int email=0x7f070016;
+        public static final int expiry_date=0x7f070031;
+        public static final int female=0x7f07002f;
+        public static final int filtersTitle=0x7f070022;
+        public static final int forgot_email=0x7f070019;
+        public static final int forgot_password=0x7f07001f;
+        public static final int forgot_submit=0x7f07001a;
+        public static final int forgot_username=0x7f070018;
+        public static final int genderText=0x7f070023;
+        public static final int gender_spinner=0x7f070024;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
-        public static final int imgLogo=0x7f070028;
-        public static final int loginButton=0x7f070017;
-        public static final int logout=0x7f07002d;
-        public static final int male=0x7f070026;
-        public static final int map=0x7f070029;
-        public static final int maps=0x7f07002c;
+        public static final int imgLogo=0x7f070032;
+        public static final int loginButton=0x7f07001d;
+        public static final int logout=0x7f070037;
+        public static final int male=0x7f07002e;
+        public static final int map=0x7f070033;
+        public static final int maps=0x7f070036;
         public static final int match_parent=0x7f07000c;
-        public static final int maxPassNumberPicker=0x7f070021;
-        public static final int maxPassengersText=0x7f070020;
-        public static final int message=0x7f070014;
-        public static final int minRatingText=0x7f07001e;
+        public static final int maxPassNumberPicker=0x7f070028;
+        public static final int maxPassengersText=0x7f070027;
+        public static final int message=0x7f07001c;
+        public static final int minRatingText=0x7f070025;
         public static final int monochrome=0x7f070013;
-        public static final int name=0x7f070024;
+        public static final int name=0x7f07002b;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
-        public static final int offerCab=0x7f07001a;
-        public static final int password=0x7f070016;
+        public static final int offerCab=0x7f070021;
+        public static final int password=0x7f070015;
         public static final int production=0x7f070007;
-        public static final int ratingNumberPicker=0x7f07001f;
-        public static final int registerButton=0x7f070018;
-        public static final int repeatPassword=0x7f070025;
-        public static final int requestCab=0x7f070019;
+        public static final int ratingNumberPicker=0x7f070026;
+        public static final int registerButton=0x7f07001e;
+        public static final int repeatPassword=0x7f07002c;
+        public static final int requestCab=0x7f070020;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
-        public static final int username=0x7f070015;
+        public static final int text_logIn=0x7f07001b;
+        public static final int username=0x7f070014;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -490,6 +500,7 @@ containing a value of this type.
         public static final int accept=0x7f050002;
         public static final int action_settings=0x7f050025;
         public static final int app_name=0x7f050023;
+        public static final int birthday=0x7f050036;
         /**   Text for notification shown when the Android Wear apps needs to be updated. Only shown on the wearable. [CHAR LIMIT=NONE] 
          */
         public static final int common_android_wear_notification_needs_update_text=0x7f050009;
@@ -589,12 +600,28 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f050020;
+        public static final int confirm_password=0x7f050031;
         public static final int create_calendar_message=0x7f050005;
         public static final int create_calendar_title=0x7f050004;
+        public static final int credit_card_num=0x7f050034;
         public static final int decline=0x7f050003;
+        public static final int email=0x7f050029;
+        public static final int expiry_date=0x7f050035;
+        public static final int female=0x7f050033;
+        public static final int forgot_password=0x7f05002c;
         public static final int hello_world=0x7f050024;
+        public static final int login=0x7f050027;
+        public static final int male=0x7f050032;
+        public static final int message=0x7f05002d;
+        public static final int name=0x7f050030;
+        public static final int offer_cab=0x7f05002f;
+        public static final int password=0x7f05002a;
+        public static final int register=0x7f05002b;
+        public static final int request_cab=0x7f05002e;
         public static final int store_picture_message=0x7f050001;
         public static final int store_picture_title=0x7f050000;
+        public static final int submit=0x7f050028;
+        public static final int username=0x7f050026;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

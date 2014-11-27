@@ -2,20 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp" >
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Message" />
     <EditText
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="@string/name"
         android:ems="10" >
         <requestFocus />
     </EditText>
@@ -24,7 +19,7 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/username"
         android:ems="10" >
     </EditText>
 
@@ -32,7 +27,7 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:ems="10"
         android:inputType="textPassword" />
     
@@ -40,9 +35,25 @@
         android:id="@+id/repeatPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Retype Password"
+        android:hint="@string/confirm_password"
         android:ems="10"
         android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:hint="@string/birthday" />
     
     <RadioGroup
         android:layout_width="fill_parent"
@@ -52,25 +63,40 @@
 		    android:id="@+id/male"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text="Male">
+		    android:text="@string/male">
 		</RadioButton>
 		<RadioButton
 		    android:id="@+id/female"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text="Female">
+		    android:text="@string/female">
 		</RadioButton> 
     </RadioGroup>
+
+    <EditText
+        android:id="@+id/credit_card_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/credit_card_num" />
+
+    <EditText
+        android:id="@+id/expiry_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:hint="@string/expiry_date"
+        android:inputType="date"/>
 
     <Button
         android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="@string/register" />
     <TextView
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Login" />
+        android:text="@string/login" />
 </LinearLayout>

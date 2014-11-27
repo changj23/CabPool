@@ -1,16 +1,13 @@
 package com.a04.cabpool;
 
-import com.a04.cabpool.R;
-import com.a04.cabpool.R.id;
-import com.a04.cabpool.R.layout;
-import com.a04.cabpool.R.menu;
-import com.parse.ParseUser;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 
 public class AbstractGUIActivity extends Activity {
@@ -46,8 +43,10 @@ public class AbstractGUIActivity extends Activity {
     	} else if (id == R.id.logout) {
         	ParseUser.logOut();
         	Intent intent = new Intent(AbstractGUIActivity.this, LoginGUI.class);
+        	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         	startActivity(intent);
-        	finish();
+        	Toast.makeText(getApplicationContext(),"Logout successful!",Toast.LENGTH_SHORT).show();
+        	//finish();
         }
         return super.onOptionsItemSelected(item);
     }

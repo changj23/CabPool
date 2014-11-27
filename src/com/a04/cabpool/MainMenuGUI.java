@@ -28,8 +28,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offerCabButton = (Button) findViewById(R.id.offerCab);
 		message = (TextView) findViewById(R.id.message);
 
-		message.setText("Logged in as "
-				+ ParseUser.getCurrentUser().getUsername());
+		message.setText("Hello, " + ParseUser.getCurrentUser().getString("name") + "!");
 
 		// determine if current user is anonymous
 		if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {

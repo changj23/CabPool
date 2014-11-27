@@ -1,17 +1,45 @@
 package com.a04.cabpool;
 
-import android.app.Activity;
+import com.a04.cabpool.R;
+import com.a04.cabpool.R.id;
+import com.a04.cabpool.R.layout;
+import com.a04.cabpool.R.menu;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 
-public class ForgotPasswordGUI extends Activity {
+public class ForgotPasswordGUI extends AbstractGUIActivity {
+	
+	private TextView logIn;
+	private Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_forgot_password);
+        
+        logIn = (TextView) findViewById(R.id.text_logIn);
+        submit = (Button) findViewById(R.id.forgot_submit);
+        
+        logIn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(ForgotPasswordGUI.this, LoginGUI.class);
+				startActivity(intent);
+				finish();
+				
+			}
+		});
+
+
+
     }
 
 
