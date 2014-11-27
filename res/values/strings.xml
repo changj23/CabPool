@@ -6,5 +6,11 @@
     <string name="action_settings">Settings</string>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    
+    <string-array name="gender_array">
+        <item>Either</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 
 </resources>
