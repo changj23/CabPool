@@ -2,8 +2,6 @@ package com.a04.cabpool;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -26,6 +24,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private int minRating;
 	private int maxPassengers;
 	private ParseObject filter;
+	private ParseObject offer;
+	private ParseProxyObject object;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +101,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							offer.put("filters", getFilter());
 							offer.put("offerer", ParseUser.getCurrentUser());
 							offer.put("valid", true);
+							
+							// save offer for use in callback
+							saveOffer(offer);
+							
 							offer.saveInBackground(new SaveCallback() {
 
 								@Override
@@ -155,5 +159,21 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 	private ParseObject getFilter() {
 		return this.filter;
+	}
+	
+	private void saveOffer(ParseObject offer){
+		this.offer = offer;
+	}
+	
+	private ParseObject getOffer(){
+		return this.offer;
+	}
+	
+	private void saveProxyObject(ParseProxyObject object){
+		this.object = object;
+	}
+	
+	private ParseProxyObject getProxyObject(){
+		return this.object;
 	}
 }

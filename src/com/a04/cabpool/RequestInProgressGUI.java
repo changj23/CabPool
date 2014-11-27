@@ -1,13 +1,10 @@
 package com.a04.cabpool;
 
-import com.a04.cabpool.R;
-import com.a04.cabpool.R.id;
-import com.a04.cabpool.R.layout;
-import com.a04.cabpool.R.menu;
-
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.parse.ParseObject;
 
 
 public class RequestInProgressGUI extends AbstractGUIActivity {
@@ -16,5 +13,12 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+/*        Intent intent = getIntent();
+        ParseProxyObject offerProxy = (ParseProxyObject) intent.getSerializableExtra("offer");
+        ParseObject offer = offerProxy.getObject();
+        
+        Toast.makeText(this, offer.getObjectId(), Toast.LENGTH_SHORT).show();*/
+        
     }
 }
