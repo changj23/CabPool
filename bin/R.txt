@@ -97,7 +97,7 @@ int drawable ic_plusone_tall_off_client 0x7f02001f
 int drawable logo 0x7f020020
 int drawable powered_by_google_dark 0x7f020021
 int drawable powered_by_google_light 0x7f020022
-int id action_settings 0x7f070037
+int id action_settings 0x7f07003a
 int id birthday 0x7f07002d
 int id book_now 0x7f070010
 int id button_submit 0x7f070017
@@ -108,11 +108,12 @@ int id cancelOfferButton 0x7f07002a
 int id classic 0x7f070011
 int id createOffer 0x7f070029
 int id credit_card_num 0x7f070030
-int id edit_profile 0x7f070034
+int id edit_profile 0x7f070037
 int id email 0x7f070016
 int id expiry_date 0x7f070031
 int id female 0x7f07002f
 int id filtersTitle 0x7f070022
+int id firstLine 0x7f070036
 int id forgot_email 0x7f070019
 int id forgot_password 0x7f07001f
 int id forgot_submit 0x7f07001a
@@ -123,12 +124,12 @@ int id grayscale 0x7f070012
 int id holo_dark 0x7f070005
 int id holo_light 0x7f070006
 int id hybrid 0x7f070004
-int id imgLogo 0x7f070032
+int id imgLogo 0x7f070033
 int id loginButton 0x7f07001d
-int id logout 0x7f070036
+int id logout 0x7f070039
 int id male 0x7f07002e
-int id map 0x7f070033
-int id maps 0x7f070035
+int id map 0x7f070034
+int id maps 0x7f070038
 int id match_parent 0x7f07000c
 int id maxPassNumberPicker 0x7f070028
 int id maxPassengersText 0x7f070027
@@ -139,6 +140,7 @@ int id name 0x7f07002b
 int id none 0x7f070000
 int id normal 0x7f070001
 int id offerCab 0x7f070021
+int id offersListView 0x7f070032
 int id password 0x7f070015
 int id production 0x7f070007
 int id ratingNumberPicker 0x7f070026
@@ -147,6 +149,7 @@ int id repeatPassword 0x7f07002c
 int id requestCab 0x7f070020
 int id sandbox 0x7f070008
 int id satellite 0x7f070002
+int id secondLine 0x7f070035
 int id selectionDetails 0x7f07000b
 int id strict_sandbox 0x7f070009
 int id terrain 0x7f070003
@@ -169,6 +172,7 @@ int layout activity_request_in_progress 0x7f03000b
 int layout activity_splash 0x7f03000c
 int layout activity_transaction 0x7f03000d
 int layout fragment_maps 0x7f03000e
+int layout single_offer_row 0x7f03000f
 int menu main 0x7f0b0000
 int menu menu_not_logged_in 0x7f0b0001
 int string accept 0x7f050002

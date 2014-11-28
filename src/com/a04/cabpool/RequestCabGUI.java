@@ -2,9 +2,9 @@ package com.a04.cabpool;
 
 import java.util.List;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -16,11 +16,14 @@ import com.parse.ParseUser;
 public class RequestCabGUI extends AbstractGUIActivity {
 	
 	private ParseUser currentUser;
+	private ListView offersListView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_request);
+		
+		offersListView = (ListView) findViewById(R.id.offersListView);
 
 		// for QR code scanner
 /*		IntentIntegrator integrator = new IntentIntegrator(this);

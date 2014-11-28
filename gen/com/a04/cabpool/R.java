@@ -416,7 +416,7 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f070037;
+        public static final int action_settings=0x7f07003a;
         public static final int birthday=0x7f07002d;
         public static final int book_now=0x7f070010;
         public static final int button_submit=0x7f070017;
@@ -427,11 +427,12 @@ containing a value of this type.
         public static final int classic=0x7f070011;
         public static final int createOffer=0x7f070029;
         public static final int credit_card_num=0x7f070030;
-        public static final int edit_profile=0x7f070034;
+        public static final int edit_profile=0x7f070037;
         public static final int email=0x7f070016;
         public static final int expiry_date=0x7f070031;
         public static final int female=0x7f07002f;
         public static final int filtersTitle=0x7f070022;
+        public static final int firstLine=0x7f070036;
         public static final int forgot_email=0x7f070019;
         public static final int forgot_password=0x7f07001f;
         public static final int forgot_submit=0x7f07001a;
@@ -442,12 +443,12 @@ containing a value of this type.
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
-        public static final int imgLogo=0x7f070032;
+        public static final int imgLogo=0x7f070033;
         public static final int loginButton=0x7f07001d;
-        public static final int logout=0x7f070036;
+        public static final int logout=0x7f070039;
         public static final int male=0x7f07002e;
-        public static final int map=0x7f070033;
-        public static final int maps=0x7f070035;
+        public static final int map=0x7f070034;
+        public static final int maps=0x7f070038;
         public static final int match_parent=0x7f07000c;
         public static final int maxPassNumberPicker=0x7f070028;
         public static final int maxPassengersText=0x7f070027;
@@ -458,6 +459,7 @@ containing a value of this type.
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
         public static final int offerCab=0x7f070021;
+        public static final int offersListView=0x7f070032;
         public static final int password=0x7f070015;
         public static final int production=0x7f070007;
         public static final int ratingNumberPicker=0x7f070026;
@@ -466,6 +468,7 @@ containing a value of this type.
         public static final int requestCab=0x7f070020;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
+        public static final int secondLine=0x7f070035;
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
@@ -492,6 +495,7 @@ containing a value of this type.
         public static final int activity_splash=0x7f03000c;
         public static final int activity_transaction=0x7f03000d;
         public static final int fragment_maps=0x7f03000e;
+        public static final int single_offer_row=0x7f03000f;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
