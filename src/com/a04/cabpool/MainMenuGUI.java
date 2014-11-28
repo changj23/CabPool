@@ -46,8 +46,11 @@ public class MainMenuGUI extends AbstractGUIActivity {
 
 				// enable or disable offer/request buttons depending on the
 				// state of the user
-
 				refresh();
+				
+				// TEMPORARY HARD CODED CABID
+				currentUser.put("currentCabId", "12345");
+				currentUser.saveInBackground();
 
 			} else {
 				// send user to login page if currentUser doesn't exist

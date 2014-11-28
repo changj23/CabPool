@@ -25,12 +25,16 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private int maxPassengers;
 	private ParseObject filter;
 	private ParseObject offer;
-	private ParseProxyObject object;
+	
+	private String cabId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer);
+		
+		// temporary hardcoded cabId
+		cabId = "12345";
 
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
@@ -73,10 +77,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				minRating = ratingNumberPicker.getValue();
 				maxPassengers = maxPassNumberPicker.getValue();
 
-				Toast.makeText(OfferCabGUI.this,
-						"Gender: " + gender + "\nMin Rating: " + minRating,
-						Toast.LENGTH_SHORT).show();
-
 				// create new filter
 				ParseObject filter = new ParseObject("Filters");
 				filter.put("minRating", minRating);
@@ -101,9 +101,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							offer.put("filters", getFilter());
 							offer.put("offerer", ParseUser.getCurrentUser());
 							offer.put("valid", true);
-							
-							// save offer for use in callback
 							saveOffer(offer);
+							
+							offer.put("cabId", cabId);
 							
 							offer.saveInBackground(new SaveCallback() {
 
@@ -167,13 +167,5 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	
 	private ParseObject getOffer(){
 		return this.offer;
-	}
-	
-	private void saveProxyObject(ParseProxyObject object){
-		this.object = object;
-	}
-	
-	private ParseProxyObject getProxyObject(){
-		return this.object;
 	}
 }
