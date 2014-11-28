@@ -13,6 +13,8 @@ import com.parse.ParseUser;
 
 public class MainMenuGUI extends AbstractGUIActivity {
 
+	// test comment 2
+
 	private Button requestCabButton;
 	private Button offerCabButton;
 	private TextView message;
