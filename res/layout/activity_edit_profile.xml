@@ -1,31 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="10dp" >
+
+    <TextView
+        android:id="@+id/edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/edit_profile"
+        android:textSize="30sp" />
 
     <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"/>
-   	
-    <EditText
-        android:id="@+id/password"
+        android:layout_gravity="left"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/password"
-        android:inputType="textPassword"/>
-        
+        android:layout_gravity="left"
+        android:ems="10"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:inputType="textEmailAddress"/>
+        android:layout_gravity="left"
+        android:inputType="textEmailAddress" />
+
+    <requestFocus />
+
+    <EditText
+        android:id="@+id/credit_card_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/expiry_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_gravity="left"
+        android:inputType="date" />
 
     <Button
         android:id="@+id/button_submit"
