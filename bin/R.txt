@@ -97,7 +97,7 @@ int drawable ic_plusone_tall_off_client 0x7f02001f
 int drawable logo 0x7f020020
 int drawable powered_by_google_dark 0x7f020021
 int drawable powered_by_google_light 0x7f020022
-int id action_settings 0x7f070034
+int id action_settings 0x7f070037
 int id birthday 0x7f07002d
 int id book_now 0x7f070010
 int id button_submit 0x7f070017
@@ -108,7 +108,7 @@ int id cancelOfferButton 0x7f07002a
 int id classic 0x7f070011
 int id createOffer 0x7f070029
 int id credit_card_num 0x7f070030
-int id edit_profile 0x7f070035
+int id edit_profile 0x7f070034
 int id email 0x7f070016
 int id expiry_date 0x7f070031
 int id female 0x7f07002f
@@ -125,10 +125,10 @@ int id holo_light 0x7f070006
 int id hybrid 0x7f070004
 int id imgLogo 0x7f070032
 int id loginButton 0x7f07001d
-int id logout 0x7f070037
+int id logout 0x7f070036
 int id male 0x7f07002e
 int id map 0x7f070033
-int id maps 0x7f070036
+int id maps 0x7f070035
 int id match_parent 0x7f07000c
 int id maxPassNumberPicker 0x7f070028
 int id maxPassengersText 0x7f070027

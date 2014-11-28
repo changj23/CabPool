@@ -416,7 +416,7 @@ containing a value of this type.
         public static final int powered_by_google_light=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f070034;
+        public static final int action_settings=0x7f070037;
         public static final int birthday=0x7f07002d;
         public static final int book_now=0x7f070010;
         public static final int button_submit=0x7f070017;
@@ -427,7 +427,7 @@ containing a value of this type.
         public static final int classic=0x7f070011;
         public static final int createOffer=0x7f070029;
         public static final int credit_card_num=0x7f070030;
-        public static final int edit_profile=0x7f070035;
+        public static final int edit_profile=0x7f070034;
         public static final int email=0x7f070016;
         public static final int expiry_date=0x7f070031;
         public static final int female=0x7f07002f;
@@ -444,10 +444,10 @@ containing a value of this type.
         public static final int hybrid=0x7f070004;
         public static final int imgLogo=0x7f070032;
         public static final int loginButton=0x7f07001d;
-        public static final int logout=0x7f070037;
+        public static final int logout=0x7f070036;
         public static final int male=0x7f07002e;
         public static final int map=0x7f070033;
-        public static final int maps=0x7f070036;
+        public static final int maps=0x7f070035;
         public static final int match_parent=0x7f07000c;
         public static final int maxPassNumberPicker=0x7f070028;
         public static final int maxPassengersText=0x7f070027;
