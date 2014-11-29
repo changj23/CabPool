@@ -16,6 +16,7 @@
     <string name="login">Login</string>
     <string name="submit">Submit</string>
     <string name="email">Email</string>
+    <string name="email_col">Email:</string>
     <string name="password">Password</string>
     <string name="register">Register</string>
     <string name="forgot_password">Forgot Password?</string>
@@ -27,7 +28,9 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="credit_card_num">Credit Card #</string>
+    <string name="credit_card_num_col">Credit Card #:</string>
     <string name="expiry_date">Expiry Date (MMYY)</string>
+    <string name="expiry_col">Expiry Date:</string>
     <string name="birthday">Birthday</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="map">Map</string>

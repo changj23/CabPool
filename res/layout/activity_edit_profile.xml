@@ -29,6 +29,15 @@
         android:ems="10"
         android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/text_credit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:ems="10"
+        android:text="@string/credit_card_num_col"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -38,6 +47,15 @@
 
     <requestFocus />
 
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:ems="10"
+        android:text="@string/email"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/credit_card_num"
         android:layout_width="match_parent"
@@ -45,12 +63,21 @@
         android:layout_gravity="left"
         android:ems="10" />
 
+    <TextView
+        android:id="@+id/text_expiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:ems="10"
+        android:text="@string/expiry_col"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_gravity="left"
+        android:ems="10"
         android:inputType="date" />
 
     <Button
