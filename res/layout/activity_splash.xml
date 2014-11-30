@@ -9,16 +9,16 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/logo"
-        android:background="@color/black"/>
+        android:background="#1a1786"/>
     
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:textSize="12dp"
+        android:textSize="50sp"
         android:textColor="#FFFFFF"
         android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
-        android:text="CabPool" />
+        android:text="@string/app_name" />
 
 </RelativeLayout>
