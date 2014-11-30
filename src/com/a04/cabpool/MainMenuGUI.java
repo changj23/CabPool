@@ -130,7 +130,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offering = currentUser.getBoolean("offering");
 		requesting = currentUser.getBoolean("requesting");
 
-		if (offering == true) {
+/*		if (offering == true) {
 			offerCabButton.setText("Resume Offer In Progress");
 			requestCabButton.setText("Cannot request - Offer in progress");
 			requestCabButton.setEnabled(false);
@@ -146,6 +146,6 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		} else {
 			requestCabButton.setText("Request Cab");
 			offerCabButton.setEnabled(true);
-		}		
+		}*/		
 	}
 }

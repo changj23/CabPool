@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp"
-     >
+    android:padding="10dp" >
 
     <TextView
         android:id="@+id/edit_profile"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="@string/edit_profile"
@@ -30,6 +29,7 @@
         android:ems="10"
         android:textSize="20sp" />
 
+<<<<<<< Updated upstream
     <TextView
 <<<<<<< HEAD
         android:id="@+id/text_credit"
@@ -47,15 +47,18 @@
 >>>>>>> origin/master
         android:textSize="20sp" />
 
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="left"
         android:inputType="textEmailAddress" />
 
     <requestFocus />
 
+<<<<<<< Updated upstream
     <TextView
 <<<<<<< HEAD
         android:id="@+id/text_email"
@@ -73,12 +76,15 @@
 >>>>>>> origin/master
         android:textSize="20sp" />
 
+=======
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/credit_card_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
 =======
@@ -99,12 +105,15 @@
         android:text="@string/expiry_col"/>
     
 >>>>>>> origin/master
+=======
+
+>>>>>>> Stashed changes
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
         android:ems="10"
+        android:layout_gravity="left"
         android:inputType="date" />
 
     <Button

@@ -1,9 +1,11 @@
 package com.a04.cabpool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ public class RequestCabGUI extends AbstractGUIActivity {
 	
 	private ParseUser currentUser;
 	private ListView offersListView;
+	private ArrayAdapter<String> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +27,13 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		setContentView(R.layout.activity_request);
 		
 		offersListView = (ListView) findViewById(R.id.offersListView);
-
+		
+		//this.adapter = adapter;
+		
 		// for QR code scanner
 /*		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();*/
+	
 		
 		currentUser = ParseUser.getCurrentUser();
 		
@@ -41,11 +47,20 @@ public class RequestCabGUI extends AbstractGUIActivity {
 			public void done(List<ParseObject> offersList, ParseException e) {
 				// TODO Auto-generated method stub
 				if(e == null){
+					
+					ArrayList<String> arrayList = new ArrayList<String>();
+					ArrayAdapter<String> adapter = new ArrayAdapter<String>(RequestCabGUI.this, R.layout.simplerow, arrayList);
+					offersListView.setAdapter(adapter);
+					
 					if(offersList.isEmpty() == false){
 						Toast.makeText(RequestCabGUI.this, offersList.get(0).getString("cabId"), Toast.LENGTH_SHORT).show();
+						
 						// list out all the offers found
 						for (ParseObject offer : offersList){
 							Log.d("offersFound", offer.getString("cabId"));
+							
+							adapter.add("Cab id: " + offer.getString("cabId") + "\nDestination: ");
+							
 						}
 					} else {
 						Toast.makeText(RequestCabGUI.this, "No offers found", Toast.LENGTH_SHORT).show();
@@ -60,6 +75,10 @@ public class RequestCabGUI extends AbstractGUIActivity {
 			
 		});
 
+	}
+	
+	public ArrayAdapter getAdapter(){
+		return this.adapter;
 	}
 
 /*	// QR code scanner
