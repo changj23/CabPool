@@ -433,10 +433,10 @@ containing a value of this type.
         public static final int female=0x7f0b0034;
         public static final int filtersTitle=0x7f0b0028;
         public static final int firstLine=0x7f0b003a;
-        public static final int forgot_email=0x7f0b001e;
-        public static final int forgot_password=0x7f0b0025;
-        public static final int forgot_submit=0x7f0b001f;
-        public static final int forgot_username=0x7f0b001d;
+        public static final int forgot_email=0x7f0b001f;
+        public static final int forgot_password=0x7f0b001d;
+        public static final int forgot_submit=0x7f0b0020;
+        public static final int forgot_username=0x7f0b001e;
         public static final int genderText=0x7f0b0029;
         public static final int gender_spinner=0x7f0b002a;
         public static final int grayscale=0x7f0b0012;
@@ -444,7 +444,7 @@ containing a value of this type.
         public static final int holo_light=0x7f0b0006;
         public static final int hybrid=0x7f0b0000;
         public static final int imgLogo=0x7f0b0036;
-        public static final int loginButton=0x7f0b0023;
+        public static final int loginButton=0x7f0b0024;
         public static final int logout=0x7f0b003c;
         public static final int male=0x7f0b0033;
         public static final int map=0x7f0b0037;
@@ -452,7 +452,7 @@ containing a value of this type.
         public static final int match_parent=0x7f0b000c;
         public static final int maxPassNumberPicker=0x7f0b002e;
         public static final int maxPassengersText=0x7f0b002d;
-        public static final int message=0x7f0b0021;
+        public static final int message=0x7f0b0022;
         public static final int minRatingText=0x7f0b002b;
         public static final int monochrome=0x7f0b0013;
         public static final int name=0x7f0b0016;
@@ -460,10 +460,10 @@ containing a value of this type.
         public static final int normal=0x7f0b0002;
         public static final int offerCab=0x7f0b0027;
         public static final int offersListView=0x7f0b0035;
-        public static final int password=0x7f0b0022;
+        public static final int password=0x7f0b0023;
         public static final int production=0x7f0b0007;
         public static final int ratingNumberPicker=0x7f0b002c;
-        public static final int registerButton=0x7f0b0024;
+        public static final int registerButton=0x7f0b0025;
         public static final int repeatPassword=0x7f0b0031;
         public static final int requestCab=0x7f0b0026;
         public static final int rowTextView=0x7f0b0038;
@@ -475,7 +475,7 @@ containing a value of this type.
         public static final int terrain=0x7f0b0004;
         public static final int text_credit=0x7f0b0018;
         public static final int text_expiry=0x7f0b001a;
-        public static final int text_logIn=0x7f0b0020;
+        public static final int text_logIn=0x7f0b0021;
         public static final int username=0x7f0b0015;
         public static final int wrap_content=0x7f0b000d;
     }
@@ -650,13 +650,11 @@ containing a value of this type.
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
- API 11 theme customizations can go here. 
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     
- API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f040005;
         /**  Application theme. 

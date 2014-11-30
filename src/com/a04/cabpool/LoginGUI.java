@@ -24,6 +24,7 @@ public class LoginGUI extends Activity {
 	private TextView message;
 	private String username;
 	private String password;
+	private TextView forgot;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class LoginGUI extends Activity {
 		usernameInput = (EditText) findViewById(R.id.username);
 		passwordInput = (EditText) findViewById(R.id.password);
 		message = (TextView) findViewById(R.id.message);
+		forgot = (TextView) findViewById(R.id.forgot_password);
 
 		// FOR DEBUGGING: set username and password to Khedri
 		usernameInput.setText("Khedri");
@@ -80,17 +82,28 @@ public class LoginGUI extends Activity {
 			}
 
 		});
-		
-		registerButton.setOnClickListener(new View.OnClickListener(){
+
+		registerButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(LoginGUI.this, RegistrationGUI.class);
 				startActivity(intent);
-				finish();
 			}
-			
+
+		});
+
+		forgot.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(LoginGUI.this,
+						ForgotPasswordGUI.class);
+				startActivity(intent);
+
+			}
 		});
 	}
 
