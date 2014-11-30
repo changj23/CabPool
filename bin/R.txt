@@ -153,8 +153,13 @@ int id secondLine 0x7f0b0039
 int id selectionDetails 0x7f0b000b
 int id strict_sandbox 0x7f0b0009
 int id terrain 0x7f0b0004
+<<<<<<< HEAD
+int id text_credit 0x7f0b0017
+int id text_email 0x7f0b0019
+=======
 int id text_credit 0x7f0b0019
 int id text_email 0x7f0b0017
+>>>>>>> origin/master
 int id text_expiry 0x7f0b001b
 int id text_logIn 0x7f0b0021
 int id username 0x7f0b0015

@@ -472,8 +472,13 @@ containing a value of this type.
         public static final int selectionDetails=0x7f0b000b;
         public static final int strict_sandbox=0x7f0b0009;
         public static final int terrain=0x7f0b0004;
+<<<<<<< HEAD
+        public static final int text_credit=0x7f0b0017;
+        public static final int text_email=0x7f0b0019;
+=======
         public static final int text_credit=0x7f0b0019;
         public static final int text_email=0x7f0b0017;
+>>>>>>> origin/master
         public static final int text_expiry=0x7f0b001b;
         public static final int text_logIn=0x7f0b0021;
         public static final int username=0x7f0b0015;
