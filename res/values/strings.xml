@@ -27,15 +27,9 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="credit_card_num">Credit Card #</string>
+    <string name="credit_card_num_col">Credit Card #:</string>
     <string name="expiry_date">Expiry Date (MMYY)</string>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-    <string name="expiry_col">Expiry Date:</string>
-=======
-    <string name="expiry_col">Expiry Date (MMYY):</string>
->>>>>>> origin/master
-=======
->>>>>>> Stashed changes
+    <string name="expiry_date_col">Expiry Date (MMYY):</string>
     <string name="birthday">Birthday</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="map">Map</string>

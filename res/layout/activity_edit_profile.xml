@@ -29,26 +29,6 @@
         android:ems="10"
         android:textSize="20sp" />
 
-<<<<<<< Updated upstream
-    <TextView
-<<<<<<< HEAD
-        android:id="@+id/text_credit"
-=======
-        android:id="@+id/text_email"
->>>>>>> origin/master
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:ems="10"
-<<<<<<< HEAD
-        android:text="@string/credit_card_num_col"
-=======
-        android:text="@string/email_col"
->>>>>>> origin/master
-        android:textSize="20sp" />
-
-=======
->>>>>>> Stashed changes
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
@@ -58,56 +38,32 @@
 
     <requestFocus />
 
-<<<<<<< Updated upstream
     <TextView
-<<<<<<< HEAD
-        android:id="@+id/text_email"
-=======
+
         android:id="@+id/text_credit"
->>>>>>> origin/master
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10"
-<<<<<<< HEAD
-        android:text="@string/email"
-=======
         android:text="@string/credit_card_num_col"
->>>>>>> origin/master
         android:textSize="20sp" />
 
-=======
->>>>>>> Stashed changes
     <EditText
         android:id="@+id/credit_card_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10" />
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-
-=======
     
->>>>>>> origin/master
     <TextView
         android:id="@+id/text_expiry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10"
-<<<<<<< HEAD
-        android:text="@string/expiry_col"
-        android:textSize="20sp" />
-
-=======
         android:textSize="20sp" 
-        android:text="@string/expiry_col"/>
+        android:text="@string/expiry_date_col"/>
     
->>>>>>> origin/master
-=======
-
->>>>>>> Stashed changes
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="match_parent"
