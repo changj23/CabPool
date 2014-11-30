@@ -1,5 +1,7 @@
 package com.a04.cabpool;
 
+import java.util.regex.*;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,15 +28,19 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private ParseObject filter;
 	private ParseObject offer;
 	
-	private String cabId;
+	private String cabID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer);
 		
+		// for QR code scanner
+		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan();
+		
 		// temporary hardcoded cabId
-		cabId = "12345";
+		//cabID = "12345";
 
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
@@ -103,7 +109,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							offer.put("valid", true);
 							saveOffer(offer);
 							
-							offer.put("cabId", cabId);
+							offer.put("cabId", cabID);
 							
 							offer.saveInBackground(new SaveCallback() {
 
@@ -150,6 +156,32 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			}
 		});
 
+	}
+	
+	// QR code scanner
+	// Duplicated from RequestCabGUI
+	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		IntentResult scanResult = IntentIntegrator.parseActivityResult(
+				requestCode, resultCode, intent);
+
+		if (scanResult != null) {
+			// handle scan result
+			// Toast.makeText(RequestCabGUI.this, "success", Toast.LENGTH_SHORT).show();
+			// Parse scan result
+			// Use regex to parse contents
+			Pattern pattern = Pattern.compile("Contents: ");
+			Matcher matcher = pattern.matcher(scanResult.toString());
+			matcher.find();
+			int a = matcher.end();
+			pattern = Pattern.compile("Raw bytes:");
+			matcher = pattern.matcher(scanResult.toString());
+			matcher.find();
+			int b = matcher.start();
+			cabID = scanResult.toString().substring(a, b);
+			// Toast.makeText(RequestCabGUI.this, cabID, Toast.LENGTH_SHORT).show();
+
+			// Verify cabID
+		}
 	}
 	
 	// allows accessing filter in "done" callback function
