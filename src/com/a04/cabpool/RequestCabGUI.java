@@ -2,8 +2,8 @@ package com.a04.cabpool;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Intent;
 import android.location.Location;
@@ -11,11 +11,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.ml;
 import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -90,6 +92,19 @@ public class RequestCabGUI extends AbstractGUIActivity {
 
 			}
 
+		});
+		
+		offersListView.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> adapter, View view, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				String value = (String) adapter.getItemAtPosition(position);
+				Toast.makeText(RequestCabGUI.this, value,
+						Toast.LENGTH_SHORT).show();
+			}
+			
 		});
 	}
 
