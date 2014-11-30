@@ -13,8 +13,6 @@ import com.parse.ParseUser;
 
 public class MainMenuGUI extends AbstractGUIActivity {
 
-	// test comment 2
-
 	private Button requestCabButton;
 	private Button offerCabButton;
 	private TextView message;
@@ -51,8 +49,8 @@ public class MainMenuGUI extends AbstractGUIActivity {
 				refresh();
 				
 				// TEMPORARY HARD CODED CABID
-				currentUser.put("currentCabId", "12345");
-				currentUser.saveInBackground();
+				//currentUser.put("currentCabId", "12345");
+				//currentUser.saveInBackground();
 
 			} else {
 				// send user to login page if currentUser doesn't exist

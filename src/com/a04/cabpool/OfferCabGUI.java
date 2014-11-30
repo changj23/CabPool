@@ -40,7 +40,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
 		
-		
 		// temporary hardcoded cabId
 		//cabID = "12345";
 		
@@ -127,6 +126,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 										// set current user in "offering" state
 										currentUser.put("offering", true);
+										currentUser.put("currentCabId", cabID);
 										currentUser.saveInBackground();
 
 										// go to offer in progress gui

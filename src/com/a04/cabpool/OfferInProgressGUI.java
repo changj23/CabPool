@@ -36,6 +36,9 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 		Log.d("cancelOffer", cabId + "");
 		ParseQuery<ParseObject> offerQuery = ParseQuery.getQuery("Offer");
 		offerQuery.whereEqualTo("cabId", cabId);
+		
+		//Log.d("cabid", cabId);
+		
 		offerQuery.findInBackground(new FindCallback<ParseObject>() {
 
 			@Override
@@ -46,10 +49,11 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 					offer = offersList.get(0); // get offer
 					filter = offer.getParseObject("filters"); // get associated filter
 					
-					Toast.makeText(OfferInProgressGUI.this, offer.getObjectId(), Toast.LENGTH_SHORT).show();
+					//Toast.makeText(OfferInProgressGUI.this, offer.getObjectId(), Toast.LENGTH_SHORT).show();
 					
 					saveFilter(filter);
 					saveOffer(offer);
+					
 				} else {
 					Toast.makeText(OfferInProgressGUI.this,
 							e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -64,17 +68,22 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
-				// delete filter associated with offer
-				getFilter().deleteInBackground();
-				
-				// delete offer itself
-				getOffer().deleteInBackground();
-				
-				currentUser.put("offering", false);
-				currentUser.saveInBackground();
+				if(getFilter() != null && getOffer() != null){
+					// delete filter associated with offer
+					getFilter().deleteInBackground();
+					
+					// delete offer itself
+					getOffer().deleteInBackground();
+					
+					currentUser.put("offering", false);
+					currentUser.saveInBackground();
 
-				finish();
+					finish();
+				} else {
+					Toast.makeText(OfferInProgressGUI.this,
+							"Offer or Filtern is null", Toast.LENGTH_SHORT).show();
+				}
+
 			}
 		});
 
