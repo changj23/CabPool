@@ -4,11 +4,12 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="10dp"
+     >
 
     <TextView
         android:id="@+id/edit_profile"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="@string/edit_profile"
@@ -30,30 +31,46 @@
         android:textSize="20sp" />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/text_credit"
+=======
+        android:id="@+id/text_email"
+>>>>>>> origin/master
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10"
+<<<<<<< HEAD
         android:text="@string/credit_card_num_col"
+=======
+        android:text="@string/email_col"
+>>>>>>> origin/master
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="right"
         android:inputType="textEmailAddress" />
 
     <requestFocus />
 
     <TextView
+<<<<<<< HEAD
         android:id="@+id/text_email"
+=======
+        android:id="@+id/text_credit"
+>>>>>>> origin/master
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10"
+<<<<<<< HEAD
         android:text="@string/email"
+=======
+        android:text="@string/credit_card_num_col"
+>>>>>>> origin/master
         android:textSize="20sp" />
 
     <EditText
@@ -62,16 +79,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10" />
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     <TextView
         android:id="@+id/text_expiry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:ems="10"
+<<<<<<< HEAD
         android:text="@string/expiry_col"
         android:textSize="20sp" />
 
+=======
+        android:textSize="20sp" 
+        android:text="@string/expiry_col"/>
+    
+>>>>>>> origin/master
     <EditText
         android:id="@+id/expiry_date"
         android:layout_width="match_parent"
