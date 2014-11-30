@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="10dp" 
+    android:gravity="center">
     
     <TextView
         android:id="@+id/filtersTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
-        android:text="Set Filters"
-        android:gravity="center"/>
+        android:text="@string/set_filters"
+        android:gravity="left"
+        android:textSize="30sp"/>
     
     <LinearLayout
         android:layout_width="fill_parent"
@@ -21,8 +23,8 @@
 	        android:id="@+id/genderText"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="Gender:" />
+	        android:layout_weight="2"
+	        android:text="@string/gender_col" />
 	    
 		<Spinner
 		    android:id="@+id/gender_spinner"
@@ -41,8 +43,8 @@
 	        android:id="@+id/minRatingText"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="Min Rating:" />
+	        android:layout_weight="2"
+	        android:text="@string/minimum_rating" />
 	    
 		<NumberPicker
 		    android:id="@+id/ratingNumberPicker"
@@ -61,8 +63,8 @@
 	        android:id="@+id/maxPassengersText"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:text="Max Passengers:" />
+	        android:layout_weight="2"
+	        android:text="@string/maximum_passengers" />
 	    
 		<NumberPicker
 		    android:id="@+id/maxPassNumberPicker"
@@ -76,6 +78,6 @@
         android:id="@+id/createOffer"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Create Offer" />
+        android:text="@string/create_offer" />
 
 </LinearLayout>

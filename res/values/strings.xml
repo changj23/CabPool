@@ -36,4 +36,10 @@
     <string name="logout">Logout</string>
     <string name="offer_in_progress">Offer In Progress</string>
     <string name="cancel_offer">Cancel Offer</string>
+    <string name="set_filters">Set Filters</string>
+    <string name="gender_col">Gender:</string>
+    <string name="create_offer">Create Offer</string>
+    <string name="maximum_passengers_">Maximum Passengers:</string>
+    <string name="maximum_passengers">Maximum Passengers:</string>
+    <string name="minimum_rating">Minimum Rating:</string>
 </resources>
