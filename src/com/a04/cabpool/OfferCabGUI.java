@@ -1,6 +1,7 @@
 package com.a04.cabpool;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,21 +28,21 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private int maxPassengers;
 	private ParseObject filter;
 	private ParseObject offer;
-	
+
 	private String cabID;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer);
-		
-		// for QR code scanner
+
+		// for QR code scanner - Does the QR reader go back to this screen after?
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
 		
 		// temporary hardcoded cabId
 		//cabID = "12345";
-
+		
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
@@ -108,9 +109,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							offer.put("offerer", ParseUser.getCurrentUser());
 							offer.put("valid", true);
 							saveOffer(offer);
-							
+
 							offer.put("cabId", cabID);
-							
+
 							offer.saveInBackground(new SaveCallback() {
 
 								@Override
@@ -125,6 +126,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 										// set current user in "offering" state
 										currentUser.put("offering", true);
+										currentUser.put("currentCabId", cabID);
 										currentUser.saveInBackground();
 
 										// go to offer in progress gui
@@ -157,7 +159,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		});
 
 	}
-	
+
 	// QR code scanner
 	// Duplicated from RequestCabGUI
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -183,7 +185,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			// Verify cabID
 		}
 	}
-	
+
 	// allows accessing filter in "done" callback function
 	private void saveFilter(ParseObject filter) {
 		this.filter = filter;
@@ -192,12 +194,12 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private ParseObject getFilter() {
 		return this.filter;
 	}
-	
-	private void saveOffer(ParseObject offer){
+
+	private void saveOffer(ParseObject offer) {
 		this.offer = offer;
 	}
-	
-	private ParseObject getOffer(){
+
+	private ParseObject getOffer() {
 		return this.offer;
 	}
 }

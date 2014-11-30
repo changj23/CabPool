@@ -2,7 +2,8 @@ package com.a04.cabpool;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +22,9 @@ public class RequestCabGUI extends AbstractGUIActivity {
 	
 	private ParseUser currentUser;
 	private ListView offersListView;
-	private String cabID;
 	private ArrayAdapter<String> adapter;
+	
+	private String cabID = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		//this.adapter = adapter;
 		
 		// for QR code scanner
-		IntentIntegrator integrator = new IntentIntegrator(this);
-		integrator.initiateScan();	
+/*		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan();*/
+
 		
 		currentUser = ParseUser.getCurrentUser();
 		
@@ -79,6 +82,10 @@ public class RequestCabGUI extends AbstractGUIActivity {
 
 	}
 	
+	public ArrayAdapter getAdapter(){
+		return this.adapter;
+	}
+
 	// QR code scanner
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
