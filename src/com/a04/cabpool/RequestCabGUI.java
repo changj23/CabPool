@@ -22,12 +22,11 @@ public class RequestCabGUI extends AbstractGUIActivity {
 	
 	private ParseUser currentUser;
 	private ListView offersListView;
-<<<<<<< HEAD
+
 	private ArrayAdapter<String> adapter;
-=======
+
 	
 	private String cabID = "";
->>>>>>> b374a8e495569a9fb9c048825bf83be3ec911412
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +38,11 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		//this.adapter = adapter;
 		
 		// for QR code scanner
-<<<<<<< HEAD
 /*		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();*/
 	
-=======
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
->>>>>>> b374a8e495569a9fb9c048825bf83be3ec911412
 		
 		currentUser = ParseUser.getCurrentUser();
 		
