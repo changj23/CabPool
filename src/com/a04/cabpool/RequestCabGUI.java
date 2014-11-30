@@ -1,7 +1,10 @@
 package com.a04.cabpool;
 
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -17,6 +20,8 @@ public class RequestCabGUI extends AbstractGUIActivity {
 	
 	private ParseUser currentUser;
 	private ListView offersListView;
+	
+	private String cabID = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +31,8 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		offersListView = (ListView) findViewById(R.id.offersListView);
 
 		// for QR code scanner
-/*		IntentIntegrator integrator = new IntentIntegrator(this);
-		integrator.initiateScan();*/
+		IntentIntegrator integrator = new IntentIntegrator(this);
+		integrator.initiateScan();
 		
 		currentUser = ParseUser.getCurrentUser();
 		
@@ -62,16 +67,30 @@ public class RequestCabGUI extends AbstractGUIActivity {
 
 	}
 
-/*	// QR code scanner
+	// QR code scanner
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, intent);
 		
 		if (scanResult != null) {
 			// handle scan result
-			Toast.makeText(RequestCabGUI.this, "success", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(RequestCabGUI.this, "success", Toast.LENGTH_SHORT).show();
+			//Parse scan result
+			//Use regex to parse contents
+			Pattern pattern = Pattern.compile("Contents: ");
+			Matcher matcher = pattern.matcher(scanResult.toString());
+			matcher.find();
+			int a = matcher.end();
+			pattern = Pattern.compile("Raw bytes:");
+			matcher = pattern.matcher(scanResult.toString());
+			matcher.find();
+			int b = matcher.start();
+			cabID = scanResult.toString().substring(a, b);
+			//Toast.makeText(RequestCabGUI.this, cabID, Toast.LENGTH_SHORT).show();
+			
+			//Verify cabID
 		}
 		// else continue with any other code you need in the method
 		
-	}*/
+	}
 }
