@@ -61,8 +61,8 @@ public class EditProfileGUI extends AbstractGUIActivity {
 
 		currentUser = ParseUser.getCurrentUser();
 
-		username.setText("Username: " + currentUser.getUsername());
-		name.setText("Name: " + currentUser.getString("name"));
+		username.setText(currentUser.getUsername());
+		name.setText(currentUser.getString("name"));
 		email.setText(currentUser.getEmail());
 		creditCard.setText(currentUser.getString("cardNum"));
 		
