@@ -34,4 +34,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="map">Map</string>
     <string name="logout">Logout</string>
+    <string name="offer_in_progress">Offer In Progress</string>
+    <string name="cancel_offer">Cancel Offer</string>
 </resources>
