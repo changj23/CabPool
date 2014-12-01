@@ -31,7 +31,6 @@ public class RequestCabGUI extends AbstractGUIActivity {
 	private ListView offersListView;
 	private ArrayAdapter<String> adapter;
 	
-	private String cabID = "";
 	private LatLng position;
 
 	@Override
@@ -122,44 +121,15 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		return this.adapter;
 	}
 
-	// QR code scanner
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		IntentResult scanResult = IntentIntegrator.parseActivityResult(
-				requestCode, resultCode, intent);
-
-		if (scanResult != null) {
-			// handle scan result
-			// Toast.makeText(RequestCabGUI.this, "success",
-			// Toast.LENGTH_SHORT).show();
-			// Parse scan result
-			// Use regex to parse contents
-			Pattern pattern = Pattern.compile("Contents: ");
-			Matcher matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int a = matcher.end();
-			pattern = Pattern.compile("Raw bytes:");
-			matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int b = matcher.start();
-			cabID = scanResult.toString().substring(a, b);
-			// Toast.makeText(RequestCabGUI.this, cabID,
-			// Toast.LENGTH_SHORT).show();
-
-			// Verify cabID
-		}
-		// else continue with any other code you need in the method
-
-	}
-
 	public class CabPoolLocationListener implements LocationListener {
 
 		@Override
 		public void onLocationChanged(Location location) {
-//			location.getLatitude();
-//			location.getLongitude();
+			//location.getLatitude();
+			//location.getLongitude();
 			position = new LatLng(location.getLatitude(), location.getLongitude());
 			
-/*			String Text = "My current location is: " + "Latitude = "
+			/*String Text = "My current location is: " + "Latitude = "
 					+ position.latitude + "Longitude = "
 					+ position.longitude;
 			Toast.makeText(getApplicationContext(), Text, Toast.LENGTH_SHORT)

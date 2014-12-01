@@ -44,4 +44,6 @@
     <string name="minimum_rating">Minimum Rating:</string>
     <string name="email_col">Email:</string>
     <string name="change">Change</string>
+    <string name="cab_arrived">Cab Arrived</string>
+
 </resources>
