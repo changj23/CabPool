@@ -34,4 +34,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="map">Map</string>
     <string name="logout">Logout</string>
+    <string name="cab_arrived">Cab Arrived</string>
 </resources>
