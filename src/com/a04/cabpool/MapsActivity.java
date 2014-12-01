@@ -1,19 +1,16 @@
 package com.a04.cabpool;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Point;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.tyczj.mapnavigator.Navigator;
 
@@ -30,11 +27,18 @@ public class MapsActivity extends AbstractGUIActivity {
 		// get my location
 		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
 		Criteria criteria = new Criteria();
-		String provider = lm.getBestProvider(criteria, true);
-
-		Location location = lm.getLastKnownLocation(provider);
-
-		//
+		String bestProvider = lm.getBestProvider(criteria, true);
+		
+		Location location = lm.getLastKnownLocation(bestProvider);
+		
+		if(location == null){
+			Log.d("provider", "Getting Network Provider");
+			location = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
+		
+		Geocoder geocoder = new Geocoder(getBaseContext());
+		
+		// make sure that location service is enabled
 		if (location != null) {
 			map = ((MapFragment) getFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
