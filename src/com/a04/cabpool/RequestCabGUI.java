@@ -42,12 +42,6 @@ public class RequestCabGUI extends AbstractGUIActivity {
 
 		// this.adapter = adapter;
 
-		// for QR code scanner
-		/*
-		 * IntentIntegrator integrator = new IntentIntegrator(this);
-		 * integrator.initiateScan();
-		 */
-
 		currentUser = ParseUser.getCurrentUser();
 
 		// query for a list of offers
