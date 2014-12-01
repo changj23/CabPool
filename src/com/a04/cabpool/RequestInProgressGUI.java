@@ -14,7 +14,7 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 
 	private Button cabHereButton;
 
-	private String cabID = "";
+	private String cabID = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +34,34 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 				//Toast.makeText(getApplicationContext(), "TEST", Toast.LENGTH_SHORT).show();
 			}
 		});
-
 	}
 
+	@Override
+	protected void onStart(){
+		super.onStart();
+		// Reset cabID
+		cabID = null;
+	}
+	
 	// QR code scanner
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, intent);
 
 		if (scanResult != null) {
-			// handle scan result
-			// Toast.makeText(RequestCabGUI.this, "success",
-			// Toast.LENGTH_SHORT).show();
-			// Parse scan result
-			// Use regex to parse contents
-			Pattern pattern = Pattern.compile("Contents: ");
-			Matcher matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int a = matcher.end();
-			pattern = Pattern.compile("Raw bytes:");
-			matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int b = matcher.start();
-			cabID = scanResult.toString().substring(a, b);
-			// Toast.makeText(RequestCabGUI.this, cabID,
-			// Toast.LENGTH_SHORT).show();
-
+			cabID = scanResult.getContents();
+			if (scanResult.getContents() == null){
+				Intent i = new Intent(RequestInProgressGUI.this, RequestInProgressGUI.class);
+				startActivity(i);
+				// finish(); //?
+			}
+			 Toast.makeText(RequestInProgressGUI.this, cabID, Toast.LENGTH_SHORT).show();
 			// Verify cabID
+			
+		} else {
+			Toast.makeText(getApplicationContext(), "Scan Cancelled", Toast.LENGTH_SHORT).show();
 		}
-		// else continue with any other code you need in the method
+		
 
 	}
 }
