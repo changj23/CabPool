@@ -46,5 +46,8 @@
     <string name="change">Change</string>
     <string name="cab_arrived">Cab Arrived</string>
     <string name="offer_destination">Destination</string>
-
+    <string name="search_destination">Destination Search</string>
+    <string name="destination_address_search">Address, City</string>
+	<string name="search">Search</string>
+    
 </resources>

@@ -76,12 +76,12 @@
                 android:layout_weight="1"
                 android:entries="@array/gender_array" />
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/offerDestination"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/offer_destination" />
+        
+        <Button
+                android:id="@+id/destinationSearchButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/search_destination" />
 
         <Button
             android:id="@+id/createOffer"
