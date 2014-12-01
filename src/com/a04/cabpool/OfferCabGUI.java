@@ -29,20 +29,21 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private ParseObject filter, offer;
 	
 
-	private String cabID;
+	private String cabID = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer);
 
-		// for QR code scanner - Does the QR reader go back to this screen after?
+		// Reset cabID
+		cabID = null;
+
+		// for QR code scanner - Does the QR reader go back to this screen
+		// after?
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
-		
-		// temporary hardcoded cabId
-		//cabID = "12345";
-		
+
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
@@ -157,7 +158,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 												e.getLocalizedMessage(),
 												Toast.LENGTH_SHORT).show();
 									}
-
 								}
 
 							});
@@ -167,11 +167,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 									.show();
 						}
 					}
-
 				});
 			}
 		});
-
 	}
 
 	// QR code scanner
@@ -182,20 +180,15 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 		if (scanResult != null) {
 			// handle scan result
-			// Toast.makeText(RequestCabGUI.this, "success", Toast.LENGTH_SHORT).show();
-			// Parse scan result
-			// Use regex to parse contents
-			Pattern pattern = Pattern.compile("Contents: ");
-			Matcher matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int a = matcher.end();
-			pattern = Pattern.compile("Raw bytes:");
-			matcher = pattern.matcher(scanResult.toString());
-			matcher.find();
-			int b = matcher.start();
-			cabID = scanResult.toString().substring(a, b);
-			// Toast.makeText(RequestCabGUI.this, cabID, Toast.LENGTH_SHORT).show();
-
+			cabID = scanResult.getContents();
+			// Toast.makeText(OfferCabGUI.this, cabID,
+			// Toast.LENGTH_LONG).show();
+			if (cabID == null) {
+				Toast.makeText(OfferCabGUI.this, "Scan Cancelled",
+						Toast.LENGTH_LONG).show();
+				Intent i = new Intent(OfferCabGUI.this, MainMenuGUI.class);
+				finish();
+			}
 			// Verify cabID
 		}
 	}
