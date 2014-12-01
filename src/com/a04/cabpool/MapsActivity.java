@@ -4,6 +4,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,21 +22,7 @@ public class MapsActivity extends AbstractGUIActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_maps);
 
-		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-				.getMap();
 
-		// enable "My Location" button on map
-		map.setMyLocationEnabled(true);
-
-		// geopoint, zoom
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.260879,
-				-79.919225), 15));
-
-		// other supported types include MAP_NORMAL, MAP_TYPE_TERRAIN,
-		// MAP_TYPE_HYBRID
-		// and MAP_TYPE_NONE
-		
-		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		
 		// get my location
 		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -44,12 +31,35 @@ public class MapsActivity extends AbstractGUIActivity {
 		
 		Location location = lm.getLastKnownLocation(provider);
 		
-		// testing map navigation
-		LatLng start = new LatLng(location.getLatitude(), location.getLongitude());
-		LatLng end = new LatLng(43.260879, -79.919225);
+		//
+		if (location != null){
+			map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+					.getMap();
+
+			// enable "My Location" button on map
+			map.setMyLocationEnabled(true);
+
+			// geopoint, zoom
+			map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(43.260879,
+					-79.919225), 15));
+
+			// other supported types include MAP_NORMAL, MAP_TYPE_TERRAIN,
+			// MAP_TYPE_HYBRID
+			// and MAP_TYPE_NONE
+			
+			map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+			
+			// testing map navigation
+			LatLng start = new LatLng(location.getLatitude(), location.getLongitude());
+			LatLng end = new LatLng(43.260879, -79.919225);
+			
+			Navigator nav = new Navigator(map,start,end);
+			nav.findDirections(true);
+		} else {
+			Toast.makeText(this, "GPS needs to be enabled", Toast.LENGTH_SHORT).show();
+		}
 		
-		Navigator nav = new Navigator(map,start,end);
-		nav.findDirections(true);
+
 		
 		
 	}
