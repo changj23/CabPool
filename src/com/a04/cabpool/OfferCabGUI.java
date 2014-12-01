@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.a04.cabpool.MapsActivity.GeocoderTask;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
@@ -20,14 +22,12 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 	private ParseUser currentUser;
 	private Spinner genderSpinner;
-	private NumberPicker ratingNumberPicker;
-	private NumberPicker maxPassNumberPicker;
-	private Button createOfferButton;
+	private NumberPicker ratingNumberPicker, maxPassNumberPicker;
+	private Button createOfferButton, destinationSearch;
 	private String gender;
-	private int minRating;
-	private int maxPassengers;
-	private ParseObject filter;
-	private ParseObject offer;
+	private int minRating, maxPassengers;
+	private ParseObject filter, offer;
+	
 
 	private String cabID;
 
@@ -47,6 +47,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
 		maxPassNumberPicker = (NumberPicker) findViewById(R.id.maxPassNumberPicker);
+		destinationSearch = (Button) findViewById(R.id.destinationSearchButton);
+		
 
 		currentUser = ParseUser.getCurrentUser();
 
@@ -73,6 +75,18 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		// disable soft keyboard on press
 		maxPassNumberPicker
 				.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+		
+		// open maps activity for destination search
+		destinationSearch.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(OfferCabGUI.this, MapsActivity.class);
+				startActivity(intent);
+			}
+		});
+		
 
 		// create offer button click handler
 		createOfferButton.setOnClickListener(new View.OnClickListener() {

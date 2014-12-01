@@ -45,6 +45,14 @@
     <string name="email_col">Email:</string>
     <string name="change">Change</string>
     <string name="cab_arrived">Cab Arrived</string>
+<<<<<<< HEAD
     <string name="birthday_col">Birthday:</string>
 
+=======
+    <string name="offer_destination">Destination</string>
+    <string name="search_destination">Destination Search</string>
+    <string name="destination_address_search">Address, City</string>
+	<string name="search">Search</string>
+    
+>>>>>>> a0bc4d185737ffc880434de2cf4be2df71b9ce9e
 </resources>
