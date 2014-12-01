@@ -36,6 +36,10 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	private ParseUser currentUser;
 	private TextView username;
 	private TextView name;
+	private TextView birthDate;
+	private int bYear;
+	private int bMonth;
+	private int bDay;
 	private EditText email;
 	private EditText creditCard;
 	private EditText expiryDate;
@@ -55,6 +59,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		username = (TextView) findViewById(R.id.username);
 		name = (TextView) findViewById(R.id.name);
 		email = (EditText) findViewById(R.id.email);
+		birthDate = (TextView) findViewById(R.id.birthday);
 		creditCard = (EditText) findViewById(R.id.credit_card_num);
 		expiryDate = (EditText) findViewById(R.id.expiry_date);
 		submit = (Button) findViewById(R.id.button_submit);
@@ -64,14 +69,27 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		username.setText(currentUser.getUsername());
 		name.setText(currentUser.getString("name"));
 		email.setText(currentUser.getEmail());
+		
+		//get the birth date
+		bYear = currentUser.getDate("birthDate").getYear() + 1900;
+		bMonth = currentUser.getDate("birthDate").getMonth() + 1;
+		bDay = currentUser.getDate("birthDate").getDate() + 1;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("");
+		sb.append(currentUser.getDate("birthDate").getDate());
+		Log.d("date", sb.toString());
+		
+		birthDate.setText(bMonth + "-" + bDay + "-" + bYear);
+		
+		
 		creditCard.setText(currentUser.getString("cardNum"));
 		
 		//get the expiry date
 		mYear = currentUser.getDate("expDate").getYear() + 1900; //add 1900 for gregorian calendar
-		mMonth = currentUser.getDate("expDate").getMonth();
-		mDay = currentUser.getDate("expDate").getDate() + 1;
-		
-		expiryDate.setText(mMonth+1 + "-" + mDay + "-" + mYear);
+		mMonth = currentUser.getDate("expDate").getMonth() + 1;
+		mDay = currentUser.getDate("expDate").getDate();		
+		expiryDate.setText(mMonth + "-" + mDay + "-" + mYear);
 		
 		expiryDate.setOnTouchListener(new View.OnTouchListener() {
 			
