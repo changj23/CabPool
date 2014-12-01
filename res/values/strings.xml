@@ -29,9 +29,19 @@
     <string name="credit_card_num">Credit Card #</string>
     <string name="credit_card_num_col">Credit Card #:</string>
     <string name="expiry_date">Expiry Date (MMYY)</string>
-    <string name="expiry_date_col">Expiry Date (MMYY):</string>
+    <string name="expiry_date_col">Expiry Date:</string>
     <string name="birthday">Birthday</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="map">Map</string>
     <string name="logout">Logout</string>
+    <string name="offer_in_progress">Offer In Progress</string>
+    <string name="cancel_offer">Cancel Offer</string>
+    <string name="set_filters">Set Filters</string>
+    <string name="gender_col">Gender:</string>
+    <string name="create_offer">Create Offer</string>
+    <string name="maximum_passengers_">Maximum Passengers:</string>
+    <string name="maximum_passengers">Maximum Passengers:</string>
+    <string name="minimum_rating">Minimum Rating:</string>
+    <string name="email_col">Email:</string>
+    <string name="change">Change</string>
 </resources>
