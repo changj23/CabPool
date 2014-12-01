@@ -60,7 +60,8 @@
         <activity
             android:name="com.a04.cabpool.MainMenuGUI"
             android:label="CabPool Main Menu"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme" 
+            android:background="#eeeeee">
         </activity>
         <activity
             android:name="com.a04.cabpool.LoginGUI"
