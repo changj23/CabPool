@@ -39,9 +39,9 @@ public class LoginGUI extends Activity {
 		message = (TextView) findViewById(R.id.message);
 		forgot = (TextView) findViewById(R.id.forgot_password);
 
-		// FOR DEBUGGING: set username and password to Khedri
-		usernameInput.setText("Khedri");
-		passwordInput.setText("Khedri");
+//		// FOR DEBUGGING: set username and password to Khedri
+//		usernameInput.setText("Khedri");
+//		passwordInput.setText("Khedri");
 
 		// login button pressed
 		loginButton.setOnClickListener(new View.OnClickListener() {
