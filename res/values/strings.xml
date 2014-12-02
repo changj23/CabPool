@@ -50,5 +50,6 @@
     <string name="search_destination">Destination Search</string>
     <string name="destination_address_search">Address, City</string>
 	<string name="search">Search</string>
+	<string name="offers_available">Offers Available:</string>
     
 </resources>
