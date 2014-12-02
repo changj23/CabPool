@@ -68,7 +68,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(MainMenuGUI.this,
-						RequestCabGUI.class);
+						RequestInProgressGUI.class);
 				startActivity(intent);
 				// finish();
 			}
