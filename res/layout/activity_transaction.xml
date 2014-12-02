@@ -10,29 +10,22 @@
     tools:context="com.a04.cabpool.MainActivity" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/confirmButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_alignLeft="@+id/feeText"
+        android:layout_alignRight="@+id/feeText"
         android:layout_centerHorizontal="true"
-
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/textView1"
-
         android:layout_centerVertical="true"
         android:text="Confirm Payment" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/feeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
+        android:layout_above="@+id/confirmButton"
         android:layout_centerHorizontal="true"
-
         android:layout_marginBottom="26dp"
-
-
-
         android:text="Your fee is:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
