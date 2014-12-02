@@ -3,6 +3,8 @@ package com.a04.cabpool;
 import java.io.IOException;
 import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -12,14 +14,17 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.tyczj.mapnavigator.Navigator;
 
@@ -31,25 +36,34 @@ public class MapsActivity extends AbstractGUIActivity {
 	LatLng latLng;
 	private Button findDestinationButton;
 	private EditText offerDestinationInput;
+	Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_maps);
-		
+
+		context = this;
+
 		offerDestinationInput = (EditText) findViewById(R.id.offerDestination);
 		findDestinationButton = (Button) findViewById(R.id.findDestinationButton);
-		
+
 		findDestinationButton.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// Getting reference to EditText to get the user input
 				// location
 
+				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+				inputManager.hideSoftInputFromWindow(getCurrentFocus()
+						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
 				// Getting user input location
-				String offerDestination = offerDestinationInput.getText().toString();
+				String offerDestination = offerDestinationInput.getText()
+						.toString();
 
 				if (offerDestination != null && !offerDestination.equals("")) {
 					new GeocoderTask().execute(offerDestination);
@@ -70,7 +84,7 @@ public class MapsActivity extends AbstractGUIActivity {
 					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 		}
 
-		//Geocoder geocoder = new Geocoder(getBaseContext());
+		// Geocoder geocoder = new Geocoder(getBaseContext());
 
 		// make sure that location service is enabled
 		if (location != null) {
@@ -154,7 +168,28 @@ public class MapsActivity extends AbstractGUIActivity {
 				markerOptions.title(addressText);
 
 				map.addMarker(markerOptions);
+				map.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
 
+					@Override
+					public void onInfoWindowClick(Marker marker) {
+						// TODO Auto-generated method stub
+						Toast.makeText(context, marker.getTitle(),
+								Toast.LENGTH_SHORT).show();
+						Intent returnIntent = new Intent();
+						returnIntent.putExtra("destinationAddress",
+								marker.getTitle());
+						returnIntent.putExtra("destinationPosLat",
+								marker.getPosition().latitude);
+						returnIntent.putExtra("destinationPosLong",
+								marker.getPosition().longitude);
+						Log.d("destination", marker.getPosition().latitude
+								+ ":" + marker.getPosition().longitude);
+
+						setResult(RESULT_OK, returnIntent);
+						finish();
+					}
+
+				});
 				// Locate the first location
 				if (i == 0)
 					map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
