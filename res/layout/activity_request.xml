@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:background="@color/eeeeee" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -76,12 +77,12 @@
                 android:layout_weight="1"
                 android:entries="@array/gender_array" />
         </LinearLayout>
-        
+
         <Button
-                android:id="@+id/destinationSearchButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/search_destination" />
+            android:id="@+id/destinationSearchButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_destination" />
 
         <Button
             android:id="@+id/createRequest"
