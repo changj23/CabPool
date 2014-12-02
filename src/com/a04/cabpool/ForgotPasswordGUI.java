@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 public class ForgotPasswordGUI extends AbstractGUIActivity {
 	
-	private TextView logIn;
 	private EditText fg_emailInput;
 	private String fg_email;
 	
@@ -37,17 +36,6 @@ public class ForgotPasswordGUI extends AbstractGUIActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         fg_emailInput =(EditText) findViewById(R.id.forgot_email);
-        logIn = (TextView) findViewById(R.id.text_logIn);        
-        logIn.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(ForgotPasswordGUI.this, LoginGUI.class);
-				startActivity(intent);
-				finish();
-				
-			}
-		});
 
     }
     public void submit(View view) {

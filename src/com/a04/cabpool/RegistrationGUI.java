@@ -32,7 +32,6 @@ public class RegistrationGUI extends Activity {
 	
 	ParseUser newUser;
 	private Button register;
-	private TextView login;
 	private EditText nameInput;
 	private EditText usernameInput;
 	private EditText passwordInput;
@@ -96,7 +95,6 @@ public class RegistrationGUI extends Activity {
 
 		// Locate Buttons in main.xml
 		register = (Button) findViewById(R.id.registerButton);
-		login = (TextView) findViewById(R.id.loginButton);
 
 		birthDateInput.setOnTouchListener(new View.OnTouchListener() {
 
@@ -208,18 +206,6 @@ public class RegistrationGUI extends Activity {
 
 		});
 
-		// Login button click listener
-		login.setOnClickListener(new OnClickListener() {
-			public void onClick(View arg0) {
-				Intent intent = new Intent(RegistrationGUI.this, LoginGUI.class);
-				startActivity(intent);
-				// show login successful toast
-				Toast.makeText(getApplicationContext(),
-						"Redirecting to login screen...", Toast.LENGTH_SHORT)
-						.show();
-				finish();
-			}
-		});
 	}
 
 	@Override

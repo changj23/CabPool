@@ -121,12 +121,5 @@
         android:layout_height="wrap_content"
         android:text="@string/register" />
 
-    <TextView
-        android:id="@+id/loginButton"
-        style="@style/text_style"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/login" />
 
 </LinearLayout>
