@@ -9,9 +9,31 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.a04.cabpool.MainActivity" >
 
-    <TextView
+    <RatingBar
+        android:id="@+id/ratingBar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ratingBar1"
+        android:layout_alignRight="@+id/ratingBar1"
+        android:layout_below="@+id/ratingBar1"
+        android:layout_marginTop="20dp"
+        android:text="Rate!" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ratingBar1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Rate your ride!"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
