@@ -39,9 +39,9 @@ public class LoginGUI extends Activity {
 		message = (TextView) findViewById(R.id.message);
 		forgot = (TextView) findViewById(R.id.forgot_password);
 
-		// FOR DEBUGGING: set username and password to Khedri
-		usernameInput.setText("Khedri");
-		passwordInput.setText("Khedri");
+//		// FOR DEBUGGING: set username and password to Khedri
+//		usernameInput.setText("Khedri");
+//		passwordInput.setText("Khedri");
 
 		// login button pressed
 		loginButton.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +71,9 @@ public class LoginGUI extends Activity {
 											Toast.LENGTH_SHORT).show();
 									finish();
 								} else {
-									message.setText("Login failed");
+									message.setText("Please try again");
 									Toast.makeText(getApplicationContext(),
-											e.getLocalizedMessage(),
+											"Invalid login credentials",
 											Toast.LENGTH_SHORT).show();
 								}
 							}
@@ -90,7 +90,6 @@ public class LoginGUI extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(LoginGUI.this, RegistrationGUI.class);
 				startActivity(intent);
-				finish();
 			}
 
 		});

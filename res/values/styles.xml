@@ -13,7 +13,7 @@
         -->
         <item name="android:actionMenuTextColor">@color/black</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textColor">#00004a</item>
+        <item name="android:textColor">#1a1786</item>
         <item name="android:textColorHint">#000066</item>
     </style>
 
@@ -22,12 +22,12 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:actionMenuTextColor">@color/black</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textColor">#00004a</item>
+        <item name="android:textColor">#1a1786</item>
         <item name="android:textColorHint">#000066</item>
     </style>
 
     <style name="text_style" parent="@android:style/TextAppearance">
-        <item name="android:textColor">#00004a</item>
+        <item name="android:textColor">#1a1786</item>
         <item name="android:textColorHint">#626954</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>

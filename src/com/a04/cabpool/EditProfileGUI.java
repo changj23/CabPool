@@ -128,7 +128,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 								
 															
 								// successfully saved offer object
-								Toast.makeText(EditProfileGUI.this,
+								Toast.makeText(getApplicationContext(),
 										"Changes saved!", Toast.LENGTH_SHORT)
 										.show();
 
@@ -142,7 +142,13 @@ public class EditProfileGUI extends AbstractGUIActivity {
 								// finish activity so the user can't
 								// come back here
 								finish();
-							} else {
+							} 
+							else if (e.getCode() == 203) {
+								Toast.makeText(getApplicationContext(),
+										"An account with this email already exists", Toast.LENGTH_LONG)
+										.show();
+							}
+							else {
 								Toast.makeText(EditProfileGUI.this,
 										e.getLocalizedMessage(), Toast.LENGTH_SHORT)
 										.show();
