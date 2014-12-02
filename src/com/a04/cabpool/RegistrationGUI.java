@@ -142,7 +142,7 @@ public class RegistrationGUI extends Activity {
 
 				} else if (false == (password.equals(passwordRetype))) {
 					Toast.makeText(getApplicationContext(),
-							"Passwords do not match", Toast.LENGTH_LONG).show();
+							"Passwords do not match", Toast.LENGTH_SHORT).show();
 				} else {
 					// Save new user data into Parse.com Data Storage
 					newUser = new ParseUser();
@@ -170,16 +170,16 @@ public class RegistrationGUI extends Activity {
 								Toast.makeText(
 										getApplicationContext(),
 										"Successfully signed up! Please log in.",
-										Toast.LENGTH_LONG).show();
+										Toast.LENGTH_SHORT).show();
 							} 
 							else if (e.getCode() == 202) {
 								Toast.makeText(getApplicationContext(),
-										"Username is already taken", Toast.LENGTH_LONG)
+										"Username is already taken", Toast.LENGTH_SHORT)
 										.show();
 							}
 							else if (e.getCode() == 203) {
 								Toast.makeText(getApplicationContext(),
-										"An account with this email already exists", Toast.LENGTH_LONG)
+										"An account with this email already exists", Toast.LENGTH_SHORT)
 										.show();
 								
 							}
@@ -193,7 +193,7 @@ public class RegistrationGUI extends Activity {
 								Log.d("exception", strI);
 								
 								Toast.makeText(getApplicationContext(),
-										"Sign up Error", Toast.LENGTH_LONG)
+										"Sign up Error", Toast.LENGTH_SHORT)
 										.show();
 							}
 

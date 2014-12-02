@@ -71,9 +71,9 @@ public class LoginGUI extends Activity {
 											Toast.LENGTH_SHORT).show();
 									finish();
 								} else {
-									message.setText("Login failed");
+									message.setText("Please try again");
 									Toast.makeText(getApplicationContext(),
-											e.getLocalizedMessage(),
+											"Invalid login credentials",
 											Toast.LENGTH_SHORT).show();
 								}
 							}

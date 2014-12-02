@@ -128,7 +128,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 								
 															
 								// successfully saved offer object
-								Toast.makeText(EditProfileGUI.this,
+								Toast.makeText(getApplicationContext(),
 										"Changes saved!", Toast.LENGTH_SHORT)
 										.show();
 
