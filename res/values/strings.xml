@@ -6,6 +6,7 @@
     <string name="action_settings">Settings</string>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="eeeeee">#EEEEEE</color>
     
     <string-array name="gender_array">
         <item>Either</item>
@@ -45,9 +46,11 @@
     <string name="email_col">Email:</string>
     <string name="change">Change</string>
     <string name="cab_arrived">Cab Arrived</string>
+    <string name="birthday_col">Birthday:</string>
     <string name="offer_destination">Destination</string>
     <string name="search_destination">Destination Search</string>
     <string name="destination_address_search">Address, City</string>
 	<string name="search">Search</string>
+	<string name="offers_available">Offers Available:</string>
     
 </resources>

@@ -2,23 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/eeeeee"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp" >
 
     <TextView
+        style="@style/text_style"
         android:id="@+id/edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:text="@string/edit_profile"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:gravity="center" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/text_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -27,6 +31,7 @@
             android:textSize="15sp" />
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -38,6 +43,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/text_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -46,6 +52,7 @@
             android:textSize="15sp" />
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -58,6 +65,28 @@
         android:layout_height="wrap_content" >
 
         <TextView
+            style="@style/text_style"
+            android:id="@+id/text_birthday"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/birthday_col"
+            android:textSize="15sp" />
+
+        <TextView
+            style="@style/text_style"
+            android:id="@+id/birthday"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/text_style"
             android:id="@+id/text_email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -66,11 +95,13 @@
             android:textSize="15sp" />
 
         <EditText
+            style="@style/text_style"
             android:id="@+id/email"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress" 
+            android:hint="@string/email"/>
 
         <requestFocus />
     </LinearLayout>
@@ -80,6 +111,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/text_credit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -88,10 +120,12 @@
             android:textSize="15sp" />
 
         <EditText
+            style="@style/text_style"
             android:id="@+id/credit_card_num"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1" 
+            android:hint="@string/credit_card_num"/>
     </LinearLayout>
 
     <LinearLayout
@@ -99,6 +133,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/text_expiry"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -107,6 +142,7 @@
             android:textSize="15sp" />
 
         <EditText
+            style="@style/text_style"
             android:id="@+id/expiry_date"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -116,6 +152,7 @@
     </LinearLayout>
 
     <Button
+        style="@style/button_style"
         android:id="@+id/button_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

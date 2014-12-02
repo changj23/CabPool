@@ -12,6 +12,7 @@
         android:background="#1a1786"/>
     
     <TextView
+        style="@style/text_style"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

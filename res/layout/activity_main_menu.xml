@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/eeeeee"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="20dp" >
 
     <TextView
+        style="@style/text_style"
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,12 +16,14 @@
         android:textSize="30sp"/>
    	
     <Button
+        style="@style/button_style"
         android:id="@+id/requestCab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/request_cab" />
     
     <Button
+        style="@style/button_style"
         android:id="@+id/offerCab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

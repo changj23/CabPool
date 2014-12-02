@@ -36,6 +36,10 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	private ParseUser currentUser;
 	private TextView username;
 	private TextView name;
+	private TextView birthDate;
+	private int bYear;
+	private int bMonth;
+	private int bDay;
 	private EditText email;
 	private EditText creditCard;
 	private EditText expiryDate;
@@ -55,6 +59,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		username = (TextView) findViewById(R.id.username);
 		name = (TextView) findViewById(R.id.name);
 		email = (EditText) findViewById(R.id.email);
+		birthDate = (TextView) findViewById(R.id.birthday);
 		creditCard = (EditText) findViewById(R.id.credit_card_num);
 		expiryDate = (EditText) findViewById(R.id.expiry_date);
 		submit = (Button) findViewById(R.id.button_submit);
@@ -64,13 +69,26 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		username.setText(currentUser.getUsername());
 		name.setText(currentUser.getString("name"));
 		email.setText(currentUser.getEmail());
+		
+		//get the birth date
+		bYear = currentUser.getDate("birthDate").getYear() + 1900;
+		bMonth = currentUser.getDate("birthDate").getMonth() + 1;
+		bDay = currentUser.getDate("birthDate").getDate() + 1;
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("");
+		sb.append(currentUser.getDate("birthDate").getDate());
+		Log.d("date", sb.toString());
+		
+		birthDate.setText(bMonth + "-" + bDay + "-" + bYear);
+		
+		
 		creditCard.setText(currentUser.getString("cardNum"));
 		
 		//get the expiry date
 		mYear = currentUser.getDate("expDate").getYear() + 1900; //add 1900 for gregorian calendar
-		mMonth = currentUser.getDate("expDate").getMonth();
-		mDay = currentUser.getDate("expDate").getDate() + 1;
-		
+		mMonth = currentUser.getDate("expDate").getMonth() ;
+		mDay = currentUser.getDate("expDate").getDate();		
 		expiryDate.setText(mMonth+1 + "-" + mDay + "-" + mYear);
 		
 		expiryDate.setOnTouchListener(new View.OnTouchListener() {
@@ -92,44 +110,46 @@ public class EditProfileGUI extends AbstractGUIActivity {
 				String credit_str = creditCard.getText().toString();
 				Date expiry = new Date(mYear-1900, mMonth, mDay); //subtract 1900 for gregorian calendar
 				
-				currentUser.setEmail(email_str);
-				currentUser.put("cardNum", credit_str);
-				currentUser.put("expDate", expiry);
-				
-				
+				if (email_str.equals("") || credit_str.equals("")) {
+					Toast.makeText(EditProfileGUI.this, 
+							"Please enter all your information!", 
+							Toast.LENGTH_SHORT).show();
+				}
+				else {
+					currentUser.setEmail(email_str);
+					currentUser.put("cardNum", credit_str);
+					currentUser.put("expDate", expiry);
+					currentUser.saveInBackground(new SaveCallback() {
 
-				
+						@Override
+						public void done(ParseException e) {
+							// TODO Auto-generated method stub
+							if (e == null) {
+								
+															
+								// successfully saved offer object
+								Toast.makeText(EditProfileGUI.this,
+										"Changes saved!", Toast.LENGTH_SHORT)
+										.show();
 
-				currentUser.saveInBackground(new SaveCallback() {
+								// set current user in "offering" state
 
-					@Override
-					public void done(ParseException e) {
-						// TODO Auto-generated method stub
-						if (e == null) {
-							
-														
-							// successfully saved offer object
-							Toast.makeText(EditProfileGUI.this,
-									"Changes saved!", Toast.LENGTH_SHORT)
-									.show();
+								// go to offer in progress gui
+								Intent intent = new Intent(EditProfileGUI.this,
+										MainMenuGUI.class);
+								startActivity(intent);
 
-							// set current user in "offering" state
-
-							// go to offer in progress gui
-							Intent intent = new Intent(EditProfileGUI.this,
-									MainMenuGUI.class);
-							startActivity(intent);
-
-							// finish activity so the user can't
-							// come back here
-							finish();
-						} else {
-							Toast.makeText(EditProfileGUI.this,
-									e.getLocalizedMessage(), Toast.LENGTH_SHORT)
-									.show();
+								// finish activity so the user can't
+								// come back here
+								finish();
+							} else {
+								Toast.makeText(EditProfileGUI.this,
+										e.getLocalizedMessage(), Toast.LENGTH_SHORT)
+										.show();
+							}
 						}
-					}
-				});
+					});
+				}
 
 			}
 
@@ -160,7 +180,6 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	
 	private void updateDisplay() {
 		expiryDate.setText(new StringBuilder()
-				//Month is 0 based so add 1
 				.append(mMonth+1).append("-")
 				.append(mDay).append("-")
 				.append(mYear).append(" "));
