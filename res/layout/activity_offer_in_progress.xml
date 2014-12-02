@@ -8,6 +8,7 @@
     android:padding="10dp" >
     
     <TextView
+        style="@style/text_style"
         android:id="@+id/message"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
@@ -15,6 +16,7 @@
         android:textSize="30sp"/>
 
     <Button
+        style="@style/button_style"
         android:id="@+id/cancelOfferButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

@@ -8,39 +8,45 @@
     android:padding="10dp" >
 
     <EditText
+        style="@style/text_style"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/name"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="@string/name" >
+
         <requestFocus />
     </EditText>
-    
+
     <EditText
+        style="@style/text_style"
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/username"
-        android:ems="10" >
+        android:ems="10"
+        android:hint="@string/username" >
     </EditText>
 
     <EditText
+        style="@style/text_style"
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ems="10"
         android:hint="@string/password"
-        android:ems="10"
-        android:inputType="textPassword" />
-    
-    <EditText
-        android:id="@+id/repeatPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/confirm_password"
-        android:ems="10"
         android:inputType="textPassword" />
 
     <EditText
+        style="@style/text_style"
+        android:id="@+id/repeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword" />
+
+    <EditText
+        style="@style/text_style"
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,32 +55,37 @@
         android:inputType="textEmailAddress" />
 
     <EditText
+        style="@style/text_style"
         android:id="@+id/birthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="date"
-        android:hint="@string/birthday" />
-    
+        android:hint="@string/birthday"
+        android:inputType="date" />
+
     <RadioGroup
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        
-       	<RadioButton
-		    android:id="@+id/male"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/male">
-		</RadioButton>
-		<RadioButton
-		    android:id="@+id/female"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:text="@string/female">
-		</RadioButton> 
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            style="@style/text_style"
+            android:id="@+id/male"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/male" >
+        </RadioButton>
+
+        <RadioButton
+            style="@style/text_style"
+            android:id="@+id/female"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/female" >
+        </RadioButton>
     </RadioGroup>
 
     <EditText
+        style="@style/text_style"
         android:id="@+id/credit_card_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,22 +93,27 @@
         android:hint="@string/credit_card_num" />
 
     <EditText
+        style="@style/text_style"
         android:id="@+id/expiry_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" 
+        android:ems="10"
         android:hint="@string/expiry_date_col"
-        android:inputType="date"/>
+        android:inputType="date" />
 
     <Button
         android:id="@+id/registerButton"
+        style="@style/button_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/register" />
+
     <TextView
+        style="@style/text_style"
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/login" />
+
 </LinearLayout>

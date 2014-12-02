@@ -12,6 +12,7 @@
         android:padding="10dp" >
 
         <TextView
+            style="@style/text_style"
             android:id="@+id/filtersTitle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -24,17 +25,18 @@
             android:layout_height="wrap_content" >
 
             <TextView
+                style="@style/text_style"
                 android:id="@+id/genderText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@string/gender_col" />
 
             <Spinner
                 android:id="@+id/gender_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:entries="@array/gender_array" />
         </LinearLayout>
 
@@ -44,17 +46,18 @@
             android:gravity="center_vertical" >
 
             <TextView
+                style="@style/text_style"
                 android:id="@+id/minRatingText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@string/minimum_rating" />
 
             <NumberPicker
                 android:id="@+id/ratingNumberPicker"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:entries="@array/gender_array" />
         </LinearLayout>
 
@@ -64,27 +67,30 @@
             android:gravity="center_vertical" >
 
             <TextView
+                style="@style/text_style"
                 android:id="@+id/maxPassengersText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@string/maximum_passengers" />
 
             <NumberPicker
                 android:id="@+id/maxPassNumberPicker"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:entries="@array/gender_array" />
         </LinearLayout>
 
         <Button
+            style="@style/button_style"
             android:id="@+id/destinationSearchButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/search_destination" />
 
         <Button
+            style="@style/button_style"
             android:id="@+id/createRequest"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

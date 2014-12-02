@@ -6,6 +6,7 @@
     android:orientation="vertical" >
 
     <TextView
+        style="@style/text_style"
         android:id="@+id/listOffers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +17,8 @@
         android:id="@+id/offersListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/eeeeee" >
+        android:background="@color/eeeeee"
+         >
 
     </ListView>
 
