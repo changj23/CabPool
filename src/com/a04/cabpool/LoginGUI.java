@@ -90,7 +90,6 @@ public class LoginGUI extends Activity {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(LoginGUI.this, RegistrationGUI.class);
 				startActivity(intent);
-				finish();
 			}
 
 		});
