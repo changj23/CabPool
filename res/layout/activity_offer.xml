@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/eeeeee"
         android:gravity="center"
         android:orientation="vertical"
@@ -83,7 +83,26 @@
                 android:layout_weight="2"
                 android:entries="@array/gender_array" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
 
+            <TextView
+                style="@style/text_style"
+                android:id="@+id/destinationText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/destination_text" />
+
+            <TextView
+                android:id="@+id/destination"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:entries="@string/destination" />
+        </LinearLayout>
         <Button
             style="@style/button_style"
             android:id="@+id/destinationSearchButton"

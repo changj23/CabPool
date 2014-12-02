@@ -1,19 +1,17 @@
 package com.a04.cabpool;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.a04.cabpool.MapsActivity.GeocoderTask;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -27,6 +25,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private String gender;
 	private int minRating, maxPassengers;
 	private ParseObject filter, offer;
+	private TextView destinationText;
+	private ParseGeoPoint destinationPosition;
 	
 
 	private String cabID = null;
@@ -43,14 +43,18 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		// after?
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
-
+		
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
 		maxPassNumberPicker = (NumberPicker) findViewById(R.id.maxPassNumberPicker);
 		destinationSearch = (Button) findViewById(R.id.destinationSearchButton);
+		destinationText = (TextView) findViewById(R.id.destination);
 		
-
+		if(destinationText.getText().toString().equals("")){
+			destinationText.setText("Please select a destination.");
+		}
+		
 		currentUser = ParseUser.getCurrentUser();
 
 		// config for rating number picker
@@ -84,7 +88,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(OfferCabGUI.this, MapsActivity.class);
-				startActivity(intent);
+				startActivityForResult(intent, 1);
 			}
 		});
 		
@@ -152,7 +156,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 										// finish activity so the user can't
 										// come back here
-										finish();
+										//finish();
 									} else {
 										Toast.makeText(OfferCabGUI.this,
 												e.getLocalizedMessage(),
@@ -175,6 +179,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	// QR code scanner
 	// Duplicated from RequestCabGUI
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, intent);
 
@@ -190,6 +195,29 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				finish();
 			}
 			// Verify cabID
+		}
+		
+		if(requestCode == 1){
+			if(resultCode == RESULT_OK){
+				
+				String destinationAddress = intent.getStringExtra("destinationAddress");
+				Double destinationLat = intent.getDoubleExtra("destinationPosLat", 0);
+				Double destinationLong = intent.getDoubleExtra("destinationPosLong", 0);
+				Log.d("destination", destinationAddress+":("+destinationLat+","+destinationLong+")");
+				destinationPosition = new ParseGeoPoint(destinationLat, destinationLong);
+				
+				destinationText.setText(destinationAddress);
+				
+				// store address and destination geopoint into Location class
+				ParseObject locationClass = new ParseObject("Location");
+				locationClass.put("geopoint", destinationPosition);
+				locationClass.put("locationName", destinationAddress);
+				locationClass.saveInBackground();
+				
+			}
+			if(resultCode == RESULT_CANCELED){
+				
+			}
 		}
 	}
 
