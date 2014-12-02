@@ -73,15 +73,15 @@
         android:inputType="date" />
 
     <RadioGroup
-        android:layout_width="fill_parent"
+        android:id="@+id/genderRadio"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="2" >
+        android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/maleButton"
             style="@style/text_style"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/male" >
@@ -90,7 +90,7 @@
         <RadioButton
             android:id="@+id/femaleButton"
             style="@style/text_style"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/female" >
