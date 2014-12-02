@@ -23,8 +23,13 @@
         android:layout_alignLeft="@+id/ratingBar1"
         android:layout_alignRight="@+id/ratingBar1"
         android:layout_below="@+id/ratingBar1"
+
         android:layout_marginTop="20dp"
         android:text="Rate!" />
+
+        android:layout_marginTop="16dp"
+        android:text="Rate" />
+
 
     <TextView
         android:id="@+id/textView1"
@@ -32,7 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/ratingBar1"
         android:layout_centerHorizontal="true"
+
         android:layout_marginBottom="24dp"
+
         android:text="Rate your ride!"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
