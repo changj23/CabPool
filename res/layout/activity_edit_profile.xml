@@ -12,10 +12,9 @@
         android:id="@+id/edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="center"
         android:text="@string/edit_profile"
-        android:textSize="30sp"
-        android:gravity="center" />
+        android:textSize="30sp" />
 
     <LinearLayout
         android:layout_width="fill_parent"

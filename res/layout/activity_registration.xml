@@ -7,9 +7,18 @@
     android:orientation="vertical"
     android:padding="10dp" >
 
-    <EditText
+    <TextView
+        android:id="@id/edit_profile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         style="@style/text_style"
+        android:textSize="30sp"
+        android:text="@string/edit_profile"
+        android:gravity="center" />
+    
+    <EditText
         android:id="@+id/name"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -19,8 +28,8 @@
     </EditText>
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/username"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -28,8 +37,8 @@
     </EditText>
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/password"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -37,8 +46,8 @@
         android:inputType="textPassword" />
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/repeatPassword"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -46,8 +55,8 @@
         android:inputType="textPassword" />
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/email"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -55,8 +64,8 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/birthday"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -65,40 +74,44 @@
 
     <RadioGroup
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2" >
 
         <RadioButton
+            android:id="@+id/maleButton"
             style="@style/text_style"
-            android:id="@+id/male"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/male" >
         </RadioButton>
 
         <RadioButton
+            android:id="@+id/femaleButton"
             style="@style/text_style"
-            android:id="@+id/female"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="@string/female" >
         </RadioButton>
     </RadioGroup>
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/credit_card_num"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/credit_card_num" />
 
     <EditText
-        style="@style/text_style"
         android:id="@+id/expiry_date"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/expiry_date_col"
+        android:hint="@string/expiry_date"
         android:inputType="date" />
 
     <Button
@@ -109,8 +122,8 @@
         android:text="@string/register" />
 
     <TextView
-        style="@style/text_style"
         android:id="@+id/loginButton"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

@@ -73,7 +73,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		//get the birth date
 		bYear = currentUser.getDate("birthDate").getYear() + 1900;
 		bMonth = currentUser.getDate("birthDate").getMonth() + 1;
-		bDay = currentUser.getDate("birthDate").getDate() + 1;
+		bDay = currentUser.getDate("birthDate").getDate();
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("");
