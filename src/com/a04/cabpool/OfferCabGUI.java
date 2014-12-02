@@ -49,7 +49,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
 		maxPassNumberPicker = (NumberPicker) findViewById(R.id.maxPassNumberPicker);
 		destinationSearch = (Button) findViewById(R.id.destinationSearchButton);
-		destinationText = (TextView) findViewById(R.id.destination);
+		destinationText = (TextView) findViewById(R.id.destinationText);
 		
 		if(destinationText.getText().toString().equals("")){
 			destinationText.setText("Please select a destination.");
