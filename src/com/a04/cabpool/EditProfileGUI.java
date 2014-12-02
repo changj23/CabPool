@@ -87,9 +87,9 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		
 		//get the expiry date
 		mYear = currentUser.getDate("expDate").getYear() + 1900; //add 1900 for gregorian calendar
-		mMonth = currentUser.getDate("expDate").getMonth() + 1;
+		mMonth = currentUser.getDate("expDate").getMonth() ;
 		mDay = currentUser.getDate("expDate").getDate();		
-		expiryDate.setText(mMonth + "-" + mDay + "-" + mYear);
+		expiryDate.setText(mMonth+1 + "-" + mDay + "-" + mYear);
 		
 		expiryDate.setOnTouchListener(new View.OnTouchListener() {
 			
@@ -110,44 +110,46 @@ public class EditProfileGUI extends AbstractGUIActivity {
 				String credit_str = creditCard.getText().toString();
 				Date expiry = new Date(mYear-1900, mMonth, mDay); //subtract 1900 for gregorian calendar
 				
-				currentUser.setEmail(email_str);
-				currentUser.put("cardNum", credit_str);
-				currentUser.put("expDate", expiry);
-				
-				
+				if (email_str.equals("") || credit_str.equals("")) {
+					Toast.makeText(EditProfileGUI.this, 
+							"Please enter all your information!", 
+							Toast.LENGTH_SHORT).show();
+				}
+				else {
+					currentUser.setEmail(email_str);
+					currentUser.put("cardNum", credit_str);
+					currentUser.put("expDate", expiry);
+					currentUser.saveInBackground(new SaveCallback() {
 
-				
+						@Override
+						public void done(ParseException e) {
+							// TODO Auto-generated method stub
+							if (e == null) {
+								
+															
+								// successfully saved offer object
+								Toast.makeText(EditProfileGUI.this,
+										"Changes saved!", Toast.LENGTH_SHORT)
+										.show();
 
-				currentUser.saveInBackground(new SaveCallback() {
+								// set current user in "offering" state
 
-					@Override
-					public void done(ParseException e) {
-						// TODO Auto-generated method stub
-						if (e == null) {
-							
-														
-							// successfully saved offer object
-							Toast.makeText(EditProfileGUI.this,
-									"Changes saved!", Toast.LENGTH_SHORT)
-									.show();
+								// go to offer in progress gui
+								Intent intent = new Intent(EditProfileGUI.this,
+										MainMenuGUI.class);
+								startActivity(intent);
 
-							// set current user in "offering" state
-
-							// go to offer in progress gui
-							Intent intent = new Intent(EditProfileGUI.this,
-									MainMenuGUI.class);
-							startActivity(intent);
-
-							// finish activity so the user can't
-							// come back here
-							finish();
-						} else {
-							Toast.makeText(EditProfileGUI.this,
-									e.getLocalizedMessage(), Toast.LENGTH_SHORT)
-									.show();
+								// finish activity so the user can't
+								// come back here
+								finish();
+							} else {
+								Toast.makeText(EditProfileGUI.this,
+										e.getLocalizedMessage(), Toast.LENGTH_SHORT)
+										.show();
+							}
 						}
-					}
-				});
+					});
+				}
 
 			}
 
@@ -178,7 +180,6 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	
 	private void updateDisplay() {
 		expiryDate.setText(new StringBuilder()
-				//Month is 0 based so add 1
 				.append(mMonth+1).append("-")
 				.append(mDay).append("-")
 				.append(mYear).append(" "));
