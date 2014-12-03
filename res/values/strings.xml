@@ -58,5 +58,6 @@
 	<string name="fee_text">Your fee is:</string>
 	<string name="confirm_payment">Confirm Payment</string>
 	<string name="submit_rating">Submit Rating</string>
+	<string name="delete_account">Delete Account</string>
     
 </resources>
