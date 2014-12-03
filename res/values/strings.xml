@@ -57,5 +57,6 @@
 	<string name="destination"></string>
 	<string name="fee_text">Your fee is:</string>
 	<string name="confirm_payment">Confirm Payment</string>
+	<string name="submit_rating">Submit Rating</string>
     
 </resources>
