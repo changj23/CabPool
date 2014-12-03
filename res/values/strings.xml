@@ -58,7 +58,11 @@
 	<string name="fee_text">Your fee is:</string>
 	<string name="confirm_payment">Confirm Payment</string>
 	<string name="submit_rating">Submit Rating</string>
+<<<<<<< HEAD
 	<string name="create_request">Create Request</string>
 	<string name="cancel_request">Cancel Request</string>
+=======
+	<string name="delete_account">Delete Account</string>
+>>>>>>> EditProfileGUI
     
 </resources>
