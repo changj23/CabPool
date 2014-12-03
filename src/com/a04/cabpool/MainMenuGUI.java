@@ -28,7 +28,8 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offerCabButton = (Button) findViewById(R.id.offerCab);
 		message = (TextView) findViewById(R.id.message);
 
-		message.setText("Hello, " + ParseUser.getCurrentUser().getString("name") + "!");
+		message.setText("Hello, "
+				+ ParseUser.getCurrentUser().getString("name") + "!");
 
 		// determine if current user is anonymous
 		if (ParseAnonymousUtils.isLinked(ParseUser.getCurrentUser())) {
@@ -47,10 +48,10 @@ public class MainMenuGUI extends AbstractGUIActivity {
 				// enable or disable offer/request buttons depending on the
 				// state of the user
 				refresh();
-				
+
 				// TEMPORARY HARD CODED CABID
-				//currentUser.put("currentCabId", "12345");
-				//currentUser.saveInBackground();
+				// currentUser.put("currentCabId", "12345");
+				// currentUser.saveInBackground();
 
 			} else {
 				// send user to login page if currentUser doesn't exist
@@ -67,9 +68,15 @@ public class MainMenuGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainMenuGUI.this,
-						RequestInProgressGUI.class);
-				startActivity(intent);
+				if (getRequesting() == true) {
+					Intent intent = new Intent(MainMenuGUI.this,
+							ListOffersGUI.class);
+					startActivity(intent);
+				} else {
+					Intent intent = new Intent(MainMenuGUI.this,
+							RequestCabGUI.class);
+					startActivity(intent);
+				}
 				// finish();
 			}
 		});
@@ -121,29 +128,27 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		super.onResume();
 		refresh();
 	}
-	
-	private void refresh(){
+
+	private void refresh() {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 
 		offering = currentUser.getBoolean("offering");
 		requesting = currentUser.getBoolean("requesting");
 
-/*		if (offering == true) {
-			offerCabButton.setText("Resume Offer In Progress");
-			requestCabButton.setText("Cannot request - Offer in progress");
-			requestCabButton.setEnabled(false);
-		} else {
-			offerCabButton.setText("Offer Cab");
-			requestCabButton.setEnabled(true);
-		}
-
-		if (requesting == true) {
-			requestCabButton.setText("Resume Request In Progress");
-			offerCabButton.setText("Cannot offer - Request in progress");
-			offerCabButton.setEnabled(false);
-		} else {
-			requestCabButton.setText("Request Cab");
-			offerCabButton.setEnabled(true);
-		}*/		
+		/*
+		 * if (offering == true) {
+		 * offerCabButton.setText("Resume Offer In Progress");
+		 * requestCabButton.setText("Cannot request - Offer in progress");
+		 * requestCabButton.setEnabled(false); } else {
+		 * offerCabButton.setText("Offer Cab");
+		 * requestCabButton.setEnabled(true); }
+		 * 
+		 * if (requesting == true) {
+		 * requestCabButton.setText("Resume Request In Progress");
+		 * offerCabButton.setText("Cannot offer - Request in progress");
+		 * offerCabButton.setEnabled(false); } else {
+		 * requestCabButton.setText("Request Cab");
+		 * offerCabButton.setEnabled(true); }
+		 */
 	}
 }

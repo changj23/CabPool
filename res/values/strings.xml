@@ -55,5 +55,7 @@
 	<string name="offers_available">Offers Available:</string>
 	<string name="destination_text">Destination:</string>
 	<string name="destination"></string>
+	<string name="create_request">Create Request</string>
+	<string name="cancel_request">Cancel Request</string>
     
 </resources>
