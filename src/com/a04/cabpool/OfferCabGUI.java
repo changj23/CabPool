@@ -1,5 +1,7 @@
 package com.a04.cabpool;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +12,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -24,7 +28,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private Button createOfferButton, destinationSearch;
 	private String gender;
 	private int minRating, maxPassengers;
-	private ParseObject filter, offer;
+	private ParseObject filter, offer, locationClass, cab;
 	private TextView destinationText;
 	private ParseGeoPoint destinationPosition;
 	
@@ -49,7 +53,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		ratingNumberPicker = (NumberPicker) findViewById(R.id.ratingNumberPicker);
 		maxPassNumberPicker = (NumberPicker) findViewById(R.id.maxPassNumberPicker);
 		destinationSearch = (Button) findViewById(R.id.destinationSearchButton);
-		destinationText = (TextView) findViewById(R.id.destinationText);
+		destinationText = (TextView) findViewById(R.id.destination);
 		
 		if(destinationText.getText().toString().equals("")){
 			destinationText.setText("Please select a destination.");
@@ -123,48 +127,102 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 							// create Offer object and relate it to the filters
 							// object
-							ParseObject offer = new ParseObject("Offer");
-							offer.put("filters", getFilter());
-							offer.put("offerer", ParseUser.getCurrentUser());
-							offer.put("valid", true);
-							saveOffer(offer);
-
-							offer.put("cabId", cabID);
-
-							offer.saveInBackground(new SaveCallback() {
+							
+							currentUser.put("offering", true);
+							currentUser.put("currentCabId", cabID);
+							currentUser.put("filter", getFilter());
+							
+							currentUser.saveInBackground();
+							
+							// find parse cab object whose id matches scanned cabID
+							ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
+							cabQuery.whereEqualTo("cabID", cabID);
+							cabQuery.findInBackground(new FindCallback<ParseObject>(){
 
 								@Override
-								public void done(ParseException e) {
+								public void done(List<ParseObject> cabsList,
+										ParseException e) {
 									// TODO Auto-generated method stub
-									if (e == null) {
-										// successfully saved offer object
-										Toast.makeText(
-												OfferCabGUI.this,
-												"Successfully saved filter and offer",
-												Toast.LENGTH_SHORT).show();
+									if(e == null){
+										// note that no error does not imply a cab was found
+										if(cabsList.isEmpty() == false) {
+											ParseObject cab = cabsList.get(0);
+											Log.d("cabid", "Cab " + cabID + " found!");
+											// set strict filters for cab
+											
+											// set cab rating to be max(filterMinRating, cabMinRating)
+											int cabMinRating = cab.getInt("minRating");
+											
+											if(cabMinRating == -1 || minRating > cabMinRating){
+												cab.put("minRating", minRating);
+											}
+											
+											// set cab max passengers to be min(filterMaxPassengers, cabMaxPassengers)
+											int cabMaxPassengers = cab.getInt("maxPassengers");
+											if(cabMaxPassengers == -1 || maxPassengers < cabMaxPassengers){
+												cab.put("maxPassengers", maxPassengers);
+											}
+											
+											// set gender
+											
+											saveCab(cab);
+											
+											// check if all passengers are in "offering" mode
+											ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+											userQuery.whereEqualTo("cabID", cabID);
+											userQuery.findInBackground(new FindCallback<ParseUser>(){
 
-										// set current user in "offering" state
-										currentUser.put("offering", true);
-										currentUser.put("currentCabId", cabID);
-										currentUser.saveInBackground();
+												@Override
+												public void done(
+														List<ParseUser> usersList,
+														ParseException e) {
+													// TODO Auto-generated method stub
+													if(e == null){
+														if(usersList.isEmpty() == true){
+															getCab().put("isOffering", true);
+														} else {
+															for(int i = 0; i < usersList.size(); i++){
+																if(usersList.get(i).getBoolean("offering") == false){
+																	getCab().put("isOffering", false);
+																}
+															}
+														}
+														getCab().put("numPassengers", getCab().getInt("numPassengers") + 1);
+														getCab().saveInBackground();
+													} else {
+														// error
+														Log.d("error", e.getLocalizedMessage());
+													}
+												}
+												
+											});
 
-										// go to offer in progress gui
-										Intent intent = new Intent(
-												OfferCabGUI.this,
-												OfferInProgressGUI.class);
-										startActivity(intent);
 
-										// finish activity so the user can't
-										// come back here
-										//finish();
+										} else {
+											Toast.makeText(OfferCabGUI.this,
+													"Cab not found",
+													Toast.LENGTH_SHORT).show();
+										}
+									
 									} else {
 										Toast.makeText(OfferCabGUI.this,
 												e.getLocalizedMessage(),
 												Toast.LENGTH_SHORT).show();
 									}
 								}
-
+								
 							});
+							
+							// go to offer in progress gui
+							Intent intent = new Intent(
+									OfferCabGUI.this,
+									OfferInProgressGUI.class);
+							startActivity(intent);
+
+							// finish activity so the user can't
+							// come back here
+							finish();
+							
 						} else {
 							Toast.makeText(OfferCabGUI.this,
 									e.getLocalizedMessage(), Toast.LENGTH_SHORT)
@@ -188,10 +246,11 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			cabID = scanResult.getContents();
 			// Toast.makeText(OfferCabGUI.this, cabID,
 			// Toast.LENGTH_LONG).show();
-			if (cabID == null) {
+			if (cabID == null || cabID.equals("")) {
 				Toast.makeText(OfferCabGUI.this, "Scan Cancelled",
 						Toast.LENGTH_LONG).show();
 				Intent i = new Intent(OfferCabGUI.this, MainMenuGUI.class);
+				startActivity(i);
 				finish();
 			}
 			// Verify cabID
@@ -212,7 +271,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				ParseObject locationClass = new ParseObject("Location");
 				locationClass.put("geopoint", destinationPosition);
 				locationClass.put("locationName", destinationAddress);
-				locationClass.saveInBackground();
+				//locationClass.saveInBackground();
+				saveLocationObject(locationClass);
 				
 			}
 			if(resultCode == RESULT_CANCELED){
@@ -236,5 +296,21 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 	private ParseObject getOffer() {
 		return this.offer;
+	}
+	
+	private void saveLocationObject(ParseObject locationClass){
+		this.locationClass = locationClass;
+	}
+	
+	private ParseObject getLocationObject(){
+		return this.locationClass;
+	}
+	
+	private void saveCab(ParseObject cab){
+		this.cab = cab;
+	}
+	
+	private ParseObject getCab(){
+		return this.cab;
 	}
 }

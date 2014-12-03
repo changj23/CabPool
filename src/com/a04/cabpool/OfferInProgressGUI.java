@@ -18,9 +18,8 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 
 	private Button cancelOfferButton;
 	private ParseUser currentUser;
-	private String cabId;
-	private ParseObject offer;
-	private ParseObject filter;
+	private String cabID;
+	private ParseObject offer, filter, cab;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,12 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 		currentUser = ParseUser.getCurrentUser();
 
 		// get current user's offer so offer info can be displayed
-		cabId = currentUser.getString("currentCabId");
-		Log.d("cancelOffer", cabId + "");
+		cabID = currentUser.getString("currentCabId");
+		Log.d("cancelOffer", cabID + "");
+		ParseObject filter = currentUser.getParseObject("filter");
+		saveFilter(filter);
+		
+		/*
 		ParseQuery<ParseObject> offerQuery = ParseQuery.getQuery("Offer");
 		offerQuery.whereEqualTo("cabId", cabId);
 		
@@ -46,13 +49,15 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 				// TODO Auto-generated method stub
 				if (e == null) {
 					// no errors (doesn't imply an object was found)
-					offer = offersList.get(0); // get offer
-					filter = offer.getParseObject("filters"); // get associated filter
+					
+					//offer = offersList.get(0); // get offer
+					//filter = offer.getParseObject("filters"); // get associated filter
 					
 					//Toast.makeText(OfferInProgressGUI.this, offer.getObjectId(), Toast.LENGTH_SHORT).show();
 					
-					saveFilter(filter);
-					saveOffer(offer);
+					//saveFilter(filter);
+					//saveOffer(offer);
+					
 					
 				} else {
 					Toast.makeText(OfferInProgressGUI.this,
@@ -61,6 +66,7 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 			}
 
 		});
+		*/
 
 		// set offering status in current user to false
 		cancelOfferButton.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +74,117 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				if(getFilter() != null && getOffer() != null){
+				
+				if(getFilter() != null){
+					currentUser.put("offering", false);
+					currentUser.remove("currentCabId");
+					
+					// find parse cab object whose id matches scanned cabID
+					ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
+					cabQuery.whereEqualTo("cabID", cabID);
+					cabQuery.findInBackground(new FindCallback<ParseObject>(){
+
+						@Override
+						public void done(List<ParseObject> cabsList,
+								ParseException e) {
+							// TODO Auto-generated method stub
+							if(e == null){
+								// note that no error does not imply a cab was found
+								if(cabsList.isEmpty() == false) {
+									ParseObject cab = cabsList.get(0);
+									Log.d("cabid", "Cab " + cabID + " found!");
+									
+									saveCab(cab);
+									
+									// update strict filters for cab
+									ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+									userQuery.whereEqualTo("cabID", cabID);
+									userQuery.findInBackground(new FindCallback<ParseUser>(){
+
+										@Override
+										public void done(
+												List<ParseUser> usersList,
+												ParseException e) {
+											// TODO Auto-generated method stub
+											if(e == null){
+												if(usersList.isEmpty() == true){
+													getCab().put("isOffering", false);
+													getCab().put("minRating", -1);
+													getCab().put("maxPassengers", -1);
+													getCab().put("numPassengers", 0);
+												} else {
+													int minRating, maxPassengers, numPassengers;
+													int cabMinRating, cabMaxPassengers, cabNumPassengers;
+													String gender;
+													getCab().put("isOffering", true);
+													for(ParseUser user : usersList){
+														minRating = user.getParseObject("filter").getInt("minRating");
+														maxPassengers = user.getParseObject("filter").getInt("maxPassengers");
+														cabMinRating = getCab().getInt("minRating");
+														cabMaxPassengers = getCab().getInt("maxPassengers");
+														// set strict minRating
+														if(minRating > cabMinRating || cabMinRating == -1){
+															getCab().put("minRating", minRating);
+														}
+														
+														// set strict maxPassengers
+														if(maxPassengers < cabMaxPassengers || cabMaxPassengers == -1){
+															getCab().put("maxPassengers", maxPassengers);
+														}
+														
+														// ensure all users are in offering mode
+														if(user.getBoolean("offering") == false){
+															getCab().put("isOffering", false);
+														}
+														
+													}
+
+												}
+												
+												getCab().put("numPassengers", usersList.size());
+												getCab().saveInBackground();
+											} else {
+												// error
+												Log.d("error", e.getLocalizedMessage());
+											}
+										}
+										
+									});
+
+
+								} else {
+									Toast.makeText(OfferInProgressGUI.this,
+											"Cab not found",
+											Toast.LENGTH_SHORT).show();
+								}
+							
+							} else {
+								Toast.makeText(OfferInProgressGUI.this,
+										e.getLocalizedMessage(),
+										Toast.LENGTH_SHORT).show();
+							}
+						}
+						
+					});
+					
+					// remove filter
+					getFilter().deleteInBackground();
+					
+					// remove data from current user
+					currentUser.remove("filter");
+					currentUser.remove("destination");
+					currentUser.saveInBackground();
+					
+					finish();
+				} else {
+					Toast.makeText(OfferInProgressGUI.this,
+							"Filter not found", Toast.LENGTH_SHORT).show();
+				}
+				
+				
+				
+				
+/*				if(getFilter() != null && getOffer() != null){
 					// delete filter associated with offer
 					getFilter().deleteInBackground();
 					
@@ -82,7 +198,7 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 				} else {
 					Toast.makeText(OfferInProgressGUI.this,
 							"Offer or Filtern is null", Toast.LENGTH_SHORT).show();
-				}
+				}*/
 
 			}
 		});
@@ -103,5 +219,12 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 
 	private ParseObject getFilter() {
 		return this.filter;
+	}
+	private void saveCab(ParseObject cab){
+		this.cab = cab;
+	}
+	
+	private ParseObject getCab(){
+		return this.cab;
 	}
 }
