@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,9 @@ public class TransactionGUI extends AbstractGUIActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        confirmButton = (Button) findViewById(R.id.confirmButton);
+		feeText = (TextView) findViewById(R.id.feeText);
         
         //get fee
         //set text with fee
