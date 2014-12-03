@@ -169,7 +169,11 @@ public class EditProfileGUI extends AbstractGUIActivity {
 										getApplicationContext(),
 										"An account with this email already exists",
 										Toast.LENGTH_LONG).show();
-							} else {
+							} else if (e.getCode() == 125) {
+								Toast.makeText(getApplicationContext(),
+										"Please enter a valid email address", Toast.LENGTH_SHORT)
+										.show();
+							}else {
 								Toast.makeText(EditProfileGUI.this,
 										e.getLocalizedMessage(),
 										Toast.LENGTH_SHORT).show();

@@ -185,6 +185,11 @@ public class RegistrationGUI extends Activity {
 										.show();
 								
 							}
+							else if (e.getCode() == 125) {
+								Toast.makeText(getApplicationContext(),
+										"Please enter a valid email address", Toast.LENGTH_SHORT)
+										.show();
+							}
 							else {
 								int i = e.getCode();
 								StringBuilder sb = new StringBuilder();
