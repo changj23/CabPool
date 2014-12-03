@@ -5,20 +5,26 @@
     android:orientation="vertical" >
 
     <TextView
-        style="@style/text_style"
         android:id="@+id/listOffers"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/offers_available"
-        android:textSize="30sp"/>
+        android:textSize="30sp" />
 
     <ListView
         android:id="@+id/offersListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/eeeeee"
-         >
-
+        android:layout_height="0dp"
+        android:layout_weight="0.01"
+        android:background="@color/eeeeee" >
     </ListView>
+
+    <Button
+        android:id="@+id/cancelRequestButton"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_request" />
 
 </LinearLayout>

@@ -55,8 +55,13 @@
 	<string name="offers_available">Offers Available:</string>
 	<string name="destination_text">Destination:</string>
 	<string name="destination"></string>
+<<<<<<< HEAD
 	<string name="fee_text">Your fee is:</string>
 	<string name="confirm_payment">Confirm Payment</string>
 	<string name="submit_rating">Submit Rating</string>
+=======
+	<string name="create_request">Create Request</string>
+	<string name="cancel_request">Cancel Request</string>
+>>>>>>> 0b0ed840ff6763b752f9dac9288ebf9388bfe683
     
 </resources>

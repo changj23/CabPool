@@ -153,7 +153,9 @@ public class RegistrationGUI extends Activity {
 					newUser.put("birthDate", birthDate);
 					newUser.put("cardNum", cardNum);
 					newUser.put("expDate", expDate);
-					
+					//Define flags
+					newUser.put("offering", false);
+					newUser.put("requesting", false);
 					newUser.signUpInBackground(new SignUpCallback() {
 
 						@Override
