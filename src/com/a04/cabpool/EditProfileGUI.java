@@ -40,6 +40,8 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	private ParseUser currentUser;
 	private TextView username;
 	private TextView name;
+	private EditText password;
+	private EditText confirmPassword;
 	private TextView birthDate;
 	private int bYear;
 	private int bMonth;
@@ -52,7 +54,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 	private int mDay;
 	private Button submit;
 	private Button delete;
-	
+
 	final Context context = this;
 	static final int DATE_DIALOG_ID = 0;
 
@@ -64,6 +66,8 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		username = (TextView) findViewById(R.id.username);
 		name = (TextView) findViewById(R.id.name);
 		email = (EditText) findViewById(R.id.email);
+		password = (EditText) findViewById(R.id.password);
+		confirmPassword = (EditText) findViewById(R.id.confirm);
 		birthDate = (TextView) findViewById(R.id.birthday);
 		creditCard = (EditText) findViewById(R.id.credit_card_num);
 		expiryDate = (EditText) findViewById(R.id.expiry_date);
@@ -113,20 +117,30 @@ public class EditProfileGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 
-				String email_str = email.getText().toString();
-				String credit_str = creditCard.getText().toString();
+				String emailInput = email.getText().toString();
+				String creditInput = creditCard.getText().toString();
+				String passwordInput = password.getText().toString();
+				String confirmInput = confirmPassword.getText().toString();
+
 				Date expiry = new Date(mYear - 1900, mMonth, mDay); // subtract
 																	// 1900 for
 																	// gregorian
 																	// calendar
 
-				if (email_str.equals("") || credit_str.equals("")) {
-					Toast.makeText(EditProfileGUI.this,
+				if (emailInput.equals("") || creditInput.equals("")
+						|| passwordInput.equals("") || confirmInput.equals("")) {
+					Toast.makeText(getApplicationContext(),
 							"Please enter all your information!",
 							Toast.LENGTH_SHORT).show();
-				} else {
-					currentUser.setEmail(email_str);
-					currentUser.put("cardNum", credit_str);
+				}else if (passwordInput.equals(confirmInput) == false) {
+					Toast.makeText(getApplicationContext(),
+							"Passwords do not match",
+							Toast.LENGTH_SHORT).show();
+				}
+				else {
+					currentUser.setPassword(passwordInput);
+					currentUser.setEmail(emailInput);
+					currentUser.put("cardNum", creditInput);
 					currentUser.put("expDate", expiry);
 					currentUser.saveInBackground(new SaveCallback() {
 
@@ -175,37 +189,39 @@ public class EditProfileGUI extends AbstractGUIActivity {
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(context);
 				builder.setTitle("Confirm Delete Account");
-	            builder.setMessage("Are you sure you want to delete your account?");
-	            builder.setCancelable(true);
-	            builder.setPositiveButton("Confirm",
-	                    new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int id) {
-	                	try {
-							currentUser.delete();
-							ParseUser.logOut();
-							Toast.makeText(getApplicationContext(),
-									"Your account has been deleted", Toast.LENGTH_SHORT)
-									.show();
-							Intent intent = new Intent(EditProfileGUI.this, LoginGUI.class);
-				        	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-							startActivity(intent);
-							finish();
-							
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-	                }
-	            });
-	            builder.setNegativeButton("Cancel",
-	                    new DialogInterface.OnClickListener() {
-	                public void onClick(DialogInterface dialog, int id) {
-	                    dialog.cancel();
-	                }
-	            });
+				builder.setMessage("Are you sure you want to delete your account?");
+				builder.setCancelable(true);
+				builder.setPositiveButton("Confirm",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								try {
+									currentUser.delete();
+									ParseUser.logOut();
+									Toast.makeText(getApplicationContext(),
+											"Your account has been deleted",
+											Toast.LENGTH_SHORT).show();
+									Intent intent = new Intent(
+											EditProfileGUI.this, LoginGUI.class);
+									intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+											| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+									startActivity(intent);
+									finish();
 
-	            AlertDialog alert = builder.create();
-	            alert.show();
+								} catch (ParseException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						});
+				builder.setNegativeButton("Cancel",
+						new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
+
+				AlertDialog alert = builder.create();
+				alert.show();
 
 			}
 

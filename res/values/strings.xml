@@ -61,4 +61,9 @@
 	<string name="create_request">Create Request</string>
 	<string name="cancel_request">Cancel Request</string>
 	<string name="delete_account">Delete Account</string>
+<<<<<<< HEAD
+=======
+	<string name="password_col">Password:</string>
+    
+>>>>>>> EditProfileGUI
 </resources>
