@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:entries="@array/gender_array" />
+
         </LinearLayout>
 
         <LinearLayout

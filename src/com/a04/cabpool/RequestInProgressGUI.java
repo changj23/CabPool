@@ -14,7 +14,7 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 
 	private Button cabHereButton;
 
-	private String cabID = null;
+	private String cabID = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 	protected void onStart(){
 		super.onStart();
 		// Reset cabID
-		cabID = null;
+		cabID = "";
 	}
 	
 	// QR code scanner
@@ -50,7 +50,7 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 
 		if (scanResult != null) {
 			cabID = scanResult.getContents();
-			if (scanResult.getContents() == null){
+			if (scanResult.getContents() == ""){
 				Intent i = new Intent(RequestInProgressGUI.this, RequestInProgressGUI.class);
 				startActivity(i);
 				// finish(); //?
