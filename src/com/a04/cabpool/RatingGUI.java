@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
@@ -39,6 +40,11 @@ public class RatingGUI extends AbstractGUIActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        rateCabButton = (Button) findViewById(R.id.rateCabButton);
+		Message = (TextView) findViewById(R.id.Message);
+		cabRatingBar = (RatingBar) findViewById(R.id.cabRatingBar);
+        
         cabRatingFloat=cabRatingBar.getRating();
         
         rateCabButton.setOnClickListener(new View.OnClickListener(){
