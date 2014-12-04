@@ -117,7 +117,7 @@ public class MapsActivity extends AbstractGUIActivity {
 			LatLng end = new LatLng(43.260879, -79.919225);
 
 			Navigator nav = new Navigator(map, start, end);
-			nav.findDirections(true);
+			//nav.findDirections(true);
 		} else {
 			Toast.makeText(this, "GPS needs to be enabled", Toast.LENGTH_SHORT)
 					.show();

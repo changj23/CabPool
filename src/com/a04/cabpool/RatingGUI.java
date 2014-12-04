@@ -106,8 +106,6 @@ public class RatingGUI extends AbstractGUIActivity {
 									
 									saveCab(cab);
 									
-<<<<<<< HEAD
-=======
 									Number cabRating=cab.getNumber("cabRating");
 									Number cabRatingNum=cab.getNumber("cabRatingNum");
 									if (cabRating!=null){
@@ -149,7 +147,6 @@ public class RatingGUI extends AbstractGUIActivity {
 									}
 									
 
->>>>>>> 04a3820146e7a0644ae4fe85a5773e95230579b9
 									// update strict filters for cab
 									ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
 									userQuery.whereEqualTo("currentCabId", cabID);

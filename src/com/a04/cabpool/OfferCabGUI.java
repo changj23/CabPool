@@ -111,12 +111,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				minRating = ratingNumberPicker.getValue();
 				maxPassengers = maxPassNumberPicker.getValue();
 				
-<<<<<<< HEAD
-=======
+
 				Calendar rightNow = Calendar.getInstance();
 				long time=rightNow.getTimeInMillis();
 				currentUser.put("timeMillis", time);
->>>>>>> 04a3820146e7a0644ae4fe85a5773e95230579b9
 
 				// create new filter
 				ParseObject filter = new ParseObject("Filters");
