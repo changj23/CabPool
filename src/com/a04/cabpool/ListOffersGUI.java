@@ -145,7 +145,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-<<<<<<< HEAD
 					// delete request filter
 					saveFilter((ParseObject) currentUser.get("filter"));
 					getFilter().deleteInBackground();
@@ -154,8 +153,7 @@ public class ListOffersGUI extends AbstractGUIActivity {
 					currentUser.remove("filter");
 					currentUser.saveInBackground();	
 
-					finish();			
-=======
+					finish();		
 				// delete request filter
 				saveFilter((ParseObject) currentUser.get("filter"));
 				getFilter().deleteInBackground();
@@ -167,7 +165,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 						MainMenuGUI.class);
 				startActivity(intent);
 				finish();
->>>>>>> 32a8b4b78dc41fd7965694a8b6c5817a51173bd5
 			}
 		});
 	}
