@@ -214,6 +214,7 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 		super.onResume();
 		ParseQuery<ParseUser> requesterQuery = ParseUser.getQuery();
 		requesterQuery.whereEqualTo("requesting", true);
+		//Log.d("debug", "cabID for request: " + cabID);
 		requesterQuery.whereEqualTo("currentCabId", cabID);
 		
 		requesterQuery.findInBackground(new FindCallback<ParseUser>(){
@@ -224,6 +225,9 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 				if(e == null){
 					if(requestersList.isEmpty() == false) {
 						ParseUser requester = requestersList.get(0);
+						Toast.makeText(OfferInProgressGUI.this,
+								requester.getString("name"),
+								Toast.LENGTH_SHORT).show();
 						Log.d("debug", "requester: " + requester.getString("name"));
 					} else {
 						Log.d("debug", "requestersList is empty");

@@ -171,7 +171,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 											// get current location
 											LocationManager locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
 											LocationListener loc = new CabPoolLocationListener();
-											locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, loc);		
+											locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 0, loc);		
 																						
 											saveCab(cab);
 											
@@ -302,8 +302,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 		@Override
 		public void onLocationChanged(Location location) {
+			Log.d("debug", "getting location");
 			currentLocation = new ParseGeoPoint(location.getLatitude(),
 					location.getLongitude());
+			Log.d("debug", currentLocation.getLatitude() + ":" + currentLocation.getLongitude());
 		}
 
 		@Override

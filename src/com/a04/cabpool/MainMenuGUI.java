@@ -27,8 +27,9 @@ public class MainMenuGUI extends AbstractGUIActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
-		
-		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+
+		ParseInstallation installation = ParseInstallation
+				.getCurrentInstallation();
 		installation.put("user", ParseUser.getCurrentUser());
 		installation.saveInBackground();
 
@@ -94,8 +95,8 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offerCabButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {			
-				
+			public void onClick(View v) {
+
 				// TODO Auto-generated method stub
 				if (getOffering() == true) {
 					Intent intent = new Intent(MainMenuGUI.this,
@@ -110,13 +111,14 @@ public class MainMenuGUI extends AbstractGUIActivity {
 				// finish();
 			}
 		});
-		
+
 		arrivedButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainMenuGUI.this, TransactionGUI.class);
+				Intent intent = new Intent(MainMenuGUI.this,
+						TransactionGUI.class);
 				startActivity(intent);
 				finish();
 			}
@@ -155,28 +157,30 @@ public class MainMenuGUI extends AbstractGUIActivity {
 
 		offering = currentUser.getBoolean("offering");
 		requesting = currentUser.getBoolean("requesting");
-		
+
 		if (offering == true) {
 			arrivedButton.setVisibility(View.VISIBLE);
-		}
-		else {
+		} else {
 			arrivedButton.setVisibility(View.GONE);
 		}
 
+		if (offering == true) {
+			offerCabButton.setText("Resume Offer In Progress");
+			requestCabButton.setText("Cannot request - Offer in progress");
+			requestCabButton.setEnabled(false);
+		} else {
+			offerCabButton.setText("Offer Cab");
+			requestCabButton.setEnabled(true);
+		}
 
-//		 if (offering == true) {
-//		 offerCabButton.setText("Resume Offer In Progress");
-//		 requestCabButton.setText("Cannot request - Offer in progress");
-//		 requestCabButton.setEnabled(false); } else {
-//		 offerCabButton.setText("Offer Cab");
-//		 requestCabButton.setEnabled(true); }
-//		  
-//		 if (requesting == true) {
-//		 requestCabButton.setText("Resume Request In Progress");
-//		 offerCabButton.setText("Cannot offer - Request in progress");
-//		 offerCabButton.setEnabled(false); } else {
-//		 requestCabButton.setText("Request Cab");
-//		 offerCabButton.setEnabled(true); }
-		 
+		if (requesting == true) {
+			requestCabButton.setText("Resume Request In Progress");
+			offerCabButton.setText("Cannot offer - Request in progress");
+			offerCabButton.setEnabled(false);
+		} else {
+			requestCabButton.setText("Request Cab");
+			offerCabButton.setEnabled(true);
+		}
+
 	}
 }
