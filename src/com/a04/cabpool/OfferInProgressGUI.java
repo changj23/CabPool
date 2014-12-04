@@ -211,6 +211,33 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 		});
 
 	}
+	
+	@Override
+	protected void onResume() {
+		super.onResume();
+		ParseQuery<ParseUser> requesterQuery = ParseUser.getQuery();
+		requesterQuery.whereEqualTo("requesting", true);
+		requesterQuery.whereEqualTo("currentCabId", cabID);
+		
+		requesterQuery.findInBackground(new FindCallback<ParseUser>(){
+
+			@Override
+			public void done(List<ParseUser> requestersList, ParseException e) {
+				// TODO Auto-generated method stub
+				if(e == null){
+					if(requestersList.isEmpty() == false) {
+						ParseUser requester = requestersList.get(0);
+						Log.d("debug", "requester: " + requester.getString("name"));
+					} else {
+						Log.d("debug", "requestersList is empty");
+					}
+				} else {
+					Log.d("debug", "requesterQuery: " + e.getLocalizedMessage());
+				}
+			}
+			
+		});
+	}
 
 	private void saveOffer(ParseObject offer) {
 		this.offer = offer;

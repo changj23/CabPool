@@ -12,6 +12,7 @@ import com.parse.ParseAnonymousUtils;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.PushService;
 
 public class MainMenuGUI extends AbstractGUIActivity {
 

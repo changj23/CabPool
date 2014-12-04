@@ -106,11 +106,15 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				cabID = value.substring(8, 13);
 
 				// Find all users with cabID				
-				ParseQuery offerersQuery = ParseUser.getQuery();
+				ParseQuery<ParseUser> offerersQuery = ParseUser.getQuery();
 				offerersQuery.whereEqualTo("currentCabId", cabID);
 				
-				ParseQuery pushQuery = ParseInstallation.getQuery();
+				ParseQuery<ParseInstallation> pushQuery = ParseInstallation.getQuery();
 				pushQuery.whereMatchesQuery("user", offerersQuery);
+				
+				// set activity to open when opening notification
+				//JSONObject data = new JSONObject("{\"action\": \"com.a04.cabpool.UPDATE_STATUS\""}));
+				
 				ParsePush push = new ParsePush();
 				Log.d("Push", "1");
 				push.setQuery(pushQuery); 
@@ -171,14 +175,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				currentUser.remove("filter");
 				currentUser.saveInBackground();
 
-				finish();
-				// delete request filter
-				saveFilter((ParseObject) currentUser.get("filter"));
-				getFilter().deleteInBackground();
-
-				currentUser.put("requesting", false);
-				currentUser.remove("filter");
-				currentUser.saveInBackground();
 				finish();
 			}
 		});
