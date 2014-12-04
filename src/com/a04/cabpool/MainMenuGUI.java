@@ -95,7 +95,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 					startActivity(intent);
 				} else {
 					Intent intent = new Intent(MainMenuGUI.this,
-							RequestCabGUI.class);
+							OfferCabGUI.class);
 					startActivity(intent);
 				}
 
