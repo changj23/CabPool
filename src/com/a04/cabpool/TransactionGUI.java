@@ -26,7 +26,7 @@ public class TransactionGUI extends AbstractGUIActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_transaction);
         
         confirmButton = (Button) findViewById(R.id.confirmButton);
 		feeText = (TextView) findViewById(R.id.feeText);

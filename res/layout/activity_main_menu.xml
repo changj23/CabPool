@@ -8,24 +8,32 @@
     android:padding="20dp" >
 
     <TextView
-        style="@style/text_style"
         android:id="@+id/message"
+        style="@style/text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" 
-        android:textSize="30sp"/>
-   	
+        android:gravity="center"
+        android:textSize="30sp" />
+
     <Button
-        style="@style/button_style"
         android:id="@+id/requestCab"
+        style="@style/button_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/request_cab" />
-    
+
     <Button
-        style="@style/button_style"
         android:id="@+id/offerCab"
+        style="@style/button_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/offer_cab" />
+
+    <Button
+        android:id="@+id/arrived"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/arrived" />
+
 </LinearLayout>
