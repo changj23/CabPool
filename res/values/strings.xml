@@ -63,5 +63,6 @@
 	<string name="create_profile">Create Profile</string>
 	<string name="delete_account">Delete Account</string>
 	<string name="password_col">Password:</string>
+	<string name="arrived">Arrived At Destination</string>
     
 </resources>

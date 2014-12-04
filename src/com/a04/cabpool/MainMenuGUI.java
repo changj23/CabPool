@@ -18,6 +18,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 	private TextView message;
 	private boolean offering;
 	private boolean requesting;
+	private Button arrivedButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainMenuGUI extends AbstractGUIActivity {
 
 		requestCabButton = (Button) findViewById(R.id.requestCab);
 		offerCabButton = (Button) findViewById(R.id.offerCab);
+		arrivedButton = (Button) findViewById(R.id.arrived);
 		message = (TextView) findViewById(R.id.message);
 
 		message.setText("Hello, "
@@ -135,20 +137,20 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offering = currentUser.getBoolean("offering");
 		requesting = currentUser.getBoolean("requesting");
 
-		/*
-		 * if (offering == true) {
-		 * offerCabButton.setText("Resume Offer In Progress");
-		 * requestCabButton.setText("Cannot request - Offer in progress");
-		 * requestCabButton.setEnabled(false); } else {
-		 * offerCabButton.setText("Offer Cab");
-		 * requestCabButton.setEnabled(true); }
-		 * 
-		 * if (requesting == true) {
-		 * requestCabButton.setText("Resume Request In Progress");
-		 * offerCabButton.setText("Cannot offer - Request in progress");
-		 * offerCabButton.setEnabled(false); } else {
-		 * requestCabButton.setText("Request Cab");
-		 * offerCabButton.setEnabled(true); }
-		 */
+
+//		 if (offering == true) {
+//		 offerCabButton.setText("Resume Offer In Progress");
+//		 requestCabButton.setText("Cannot request - Offer in progress");
+//		 requestCabButton.setEnabled(false); } else {
+//		 offerCabButton.setText("Offer Cab");
+//		 requestCabButton.setEnabled(true); }
+//		  
+//		 if (requesting == true) {
+//		 requestCabButton.setText("Resume Request In Progress");
+//		 offerCabButton.setText("Cannot offer - Request in progress");
+//		 offerCabButton.setEnabled(false); } else {
+//		 requestCabButton.setText("Request Cab");
+//		 offerCabButton.setEnabled(true); }
+		 
 	}
 }
