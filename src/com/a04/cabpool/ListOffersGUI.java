@@ -124,8 +124,7 @@ public class ListOffersGUI extends AbstractGUIActivity {
 					currentUser.put("requesting", false);
 					currentUser.remove("filter");
 					currentUser.saveInBackground();	
-					Intent intent = new Intent(ListOffersGUI.this, MainMenuGUI.class);
-					startActivity(intent);
+
 					finish();			
 			}
 		});
