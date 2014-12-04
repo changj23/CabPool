@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.a04.cabpool.MainActivity" >
+
+    <item
+        android:id="@+id/maps"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/map"/>
+    
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/logout"/>
+
+</menu>

@@ -153,16 +153,7 @@ public class EditProfileGUI extends AbstractGUIActivity {
 								Toast.makeText(getApplicationContext(),
 										"Changes saved!", Toast.LENGTH_SHORT)
 										.show();
-
-								// set current user in "offering" state
-
-								// go to offer in progress gui
-								Intent intent = new Intent(EditProfileGUI.this,
-										MainMenuGUI.class);
-								startActivity(intent);
-
-								// finish activity so the user can't
-								// come back here
+								// bring user back to previous screen
 								finish();
 							} else if (e.getCode() == 203) {
 								Toast.makeText(
@@ -255,6 +246,33 @@ public class EditProfileGUI extends AbstractGUIActivity {
 		expiryDate.setText(new StringBuilder().append(mMonth + 1).append("-")
 				.append(mDay).append("-").append(mYear).append(" "));
 	};
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        return true;
+    }
+	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.maps) {
+    		Intent intent = new Intent(EditProfileGUI.this, MapsActivity.class);
+    		startActivity(intent);
+    	} else if (id == R.id.logout) {
+        	ParseUser.logOut();
+        	Intent intent = new Intent(EditProfileGUI.this, LoginGUI.class);
+        	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        	startActivity(intent);
+        	Toast.makeText(getApplicationContext(),"Logout successful!",Toast.LENGTH_SHORT).show();
+        	//finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 };
 
@@ -278,4 +296,5 @@ public class EditProfileGUI extends AbstractGUIActivity {
 // }
 // return super.onOptionsItemSelected(item);
 // }
+
 
