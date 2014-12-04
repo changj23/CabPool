@@ -84,148 +84,148 @@ public class RatingGUI extends AbstractGUIActivity {
 				// currentUser.put("ratingNum", cabRatingNumFloat);
 				// }
 
-				if (getFilter() != null) {
+				if(getFilter() != null){
 					currentUser.put("offering", false);
 					currentUser.remove("currentCabId");
-
+					try {
+						currentUser.save();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						Log.d("debug", "removesaveUser: " + e1.getLocalizedMessage());
+					}
+					
 					// find parse cab object whose id matches scanned cabID
-					ParseQuery<ParseObject> cabQuery = ParseQuery
-							.getQuery("Cab");
+					ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
 					cabQuery.whereEqualTo("cabID", cabID);
-					cabQuery.findInBackground(new FindCallback<ParseObject>() {
+					cabQuery.findInBackground(new FindCallback<ParseObject>(){
 
 						@Override
 						public void done(List<ParseObject> cabsList,
 								ParseException e) {
 							// TODO Auto-generated method stub
-							if (e == null) {
-								// note that no error does not imply a cab was
-								// found
-								if (cabsList.isEmpty() == false) {
-
-									// Why are you still saving cab?
+							if(e == null){
+								// note that no error does not imply a cab was found
+								if(cabsList.isEmpty() == false) {
+									
+									//Why are you still saving cab?
 									ParseObject cab = cabsList.get(0);
 									Log.d("cabid", "Cab " + cabID + " found!");
-
+									
 									saveCab(cab);
-
+									
 									// update strict filters for cab
-									ParseQuery<ParseUser> userQuery = ParseUser
-											.getQuery();
-									userQuery.whereEqualTo("cabID", cabID);
-									userQuery
-											.findInBackground(new FindCallback<ParseUser>() {
+									ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+									userQuery.whereEqualTo("currentCabId", cabID);
+									userQuery.findInBackground(new FindCallback<ParseUser>(){
 
-												@Override
-												public void done(
-														List<ParseUser> usersList,
-														ParseException e) {
-													// TODO Auto-generated
-													// method stub
-													if (e == null) {
-														if (usersList.isEmpty() == true) {
-															getCab().put(
-																	"isOffering",
-																	false);
-															getCab().put(
-																	"minRating",
-																	-1);
-															getCab().put(
-																	"maxPassengers",
-																	-1);
-															getCab().put(
-																	"numPassengers",
-																	0);
-														} else {
-															int minRating, maxPassengers, numPassengers;
-															int cabMinRating, cabMaxPassengers, cabNumPassengers;
-															String gender;
-															getCab().put(
-																	"isOffering",
-																	true);
-															for (ParseUser user : usersList) {
-																minRating = user
-																		.getParseObject(
-																				"filter")
-																		.getInt("minRating");
-																maxPassengers = user
-																		.getParseObject(
-																				"filter")
-																		.getInt("maxPassengers");
-																cabMinRating = getCab()
-																		.getInt("minRating");
-																cabMaxPassengers = getCab()
-																		.getInt("maxPassengers");
-																// set strict
-																// minRating
-																if (minRating > cabMinRating
-																		|| cabMinRating == -1) {
-																	getCab().put(
-																			"minRating",
-																			minRating);
-																}
-
-																// set strict
-																// maxPassengers
-																if (maxPassengers < cabMaxPassengers
-																		|| cabMaxPassengers == -1) {
-																	getCab().put(
-																			"maxPassengers",
-																			maxPassengers);
-																}
-
-																// ensure all
-																// users are in
-																// offering mode
-																if (user.getBoolean("offering") == false) {
-																	getCab().put(
-																			"isOffering",
-																			false);
-																}
-
+										@Override
+										public void done(
+												List<ParseUser> usersList,
+												ParseException e) {
+											// TODO Auto-generated method stub
+											if(e == null){
+												if(usersList.isEmpty() == true){
+													Log.d("debug", "empty");
+													getCab().put("isOffering", true);
+													getCab().put("minRating", -1);
+													getCab().put("maxPassengers", -1);
+													getCab().put("numPassengers", 0);
+												} else {
+													Log.d("debug", "not empty");
+													int minRating, maxPassengers, numPassengers;
+													int cabMinRating, cabMaxPassengers, cabNumPassengers;
+													String gender;
+													getCab().put("isOffering", true);
+													for(ParseUser user : usersList){
+														Log.d("debug", "usersList size: " + usersList.size());
+														try {
+															getCab().put("minRating", -1);
+															getCab().put("maxPassengers", -1);
+					
+															Log.d("debug", user.getString("name"));
+															ParseObject userFilter = user.getParseObject("filter");
+															Log.d("debug", "stage 1");
+															minRating = userFilter.fetchIfNeeded().getInt("minRating");
+															Log.d("debug", "stage 2");
+															maxPassengers = userFilter.fetchIfNeeded().getInt("maxPassengers");
+															Log.d("debug", "stage 3");
+															cabMinRating = getCab().getInt("minRating");
+															Log.d("debug", "stage 4");
+															cabMaxPassengers = getCab().getInt("maxPassengers");
+															Log.d("debug", "stage 5");
+															// set strict minRating
+															if(minRating > cabMinRating || cabMinRating == -1){
+																getCab().put("minRating", minRating);
+																Log.d("debug", "stage 5 if");
 															}
-
+															Log.d("debug", "stage 6");
+															// set strict maxPassengers
+															if(maxPassengers < cabMaxPassengers || cabMaxPassengers == -1){
+																getCab().put("maxPassengers", maxPassengers);
+																Log.d("debug", "stage 6 if");
+															}
+															Log.d("debug", "stage 7");
+															
+															// ensure all users are in offering mode
+															if(user.getBoolean("offering") == false){
+																getCab().put("isOffering", false);
+																Log.d("debug", "stage 7 if");
+															}
+															if(user.getString("gender").equalsIgnoreCase("male")){
+																
+															}
+															Log.d("debug", "user...minRating: " + minRating
+																	+ " maxPassengers: " + maxPassengers);
+															Log.d("debug", "cab...minRating: " + getCab().getInt("minRating")
+																	+ " maxPassengers: " + getCab().getInt("maxPassengers"));
+															Log.d("debug", "stage 8");
+														} catch (ParseException pe){
+															Log.d("debug", pe.getLocalizedMessage());
 														}
 
-														getCab().put(
-																"numPassengers",
-																usersList
-																		.size());
-														getCab().saveInBackground();
-													} else {
-														// error
-														Log.d("error",
-																e.getLocalizedMessage());
+														
 													}
-												}
 
-											});
+												}
+												Log.d("debug", "saving..minRating: " + getCab().getInt("minRating")
+														+ " maxPassengers: " + getCab().getInt("maxPassengers"));
+												getCab().put("numPassengers", usersList.size());
+												getCab().saveInBackground();
+												
+												// remove filter
+												getFilter().deleteInBackground();
+												
+												// remove data from current user
+												currentUser.remove("filter");
+												currentUser.remove("destination");
+												currentUser.saveInBackground();
+											} else {
+												// error
+												Log.d("error", e.getLocalizedMessage());
+											}
+										}
+										
+									});
+
 
 								} else {
-									
+									Log.d("debug", "ratingGUI: Cab not found");
+									//Toast.makeText(RatingGUI.this,"Cab not found",Toast.LENGTH_SHORT).show();
 								}
-
+							
 							} else {
-								Toast.makeText(getApplicationContext(),
+								Toast.makeText(RatingGUI.this,
 										e.getLocalizedMessage(),
 										Toast.LENGTH_SHORT).show();
 							}
 						}
-
+						
 					});
-
-					// remove filter
-					getFilter().deleteInBackground();
-
-					// remove data from current user
-					currentUser.remove("filter");
-					currentUser.remove("destination");
-					currentUser.saveInBackground();
-
+					
 					finish();
 				} else {
-					Toast.makeText(getApplicationContext(), "Filter not found",
-							Toast.LENGTH_SHORT).show();
+					Toast.makeText(RatingGUI.this,
+							"Filter not found", Toast.LENGTH_SHORT).show();
 				}
 				Intent intent = new Intent(RatingGUI.this, MainMenuGUI.class);
 				startActivity(intent);
