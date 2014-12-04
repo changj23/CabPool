@@ -27,6 +27,7 @@ public class ListOffersGUI extends AbstractGUIActivity {
 	private ParseObject filter;
 	private ListView offersListView;
 	private ArrayAdapter<String> adapter;
+	private String cabID = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,38 +57,42 @@ public class ListOffersGUI extends AbstractGUIActivity {
 							ListOffersGUI.this, R.layout.simplerow, arrayList);
 					offersListView.setAdapter(adapter);
 
-					Toast.makeText(getApplicationContext(), "TEST1",
-							Toast.LENGTH_LONG).show();
+					// Toast.makeText(getApplicationContext(), "TEST1",
+					// Toast.LENGTH_LONG).show();
 
-
-					if (cabList.isEmpty() == false) {
-						// list out all the offers found
-						for (ParseObject cab : cabList) {
-							//Only post offers
-							if (cab.getBoolean("isOffering")) {
-								Log.d("offersFound", cab.getString("cabID"));
-								if(cab.getInt("maxPassengers") > cab.getInt("numPassengers")){
-									Log.d("Pasengers", cab.getString("cabID"));
-									if(cab.getString("gender").equals("Either") || cab.getString("gender").equals(currentUser.getString("gender"))){
-										Log.d("gender", cab.getString("cabID"));
-										Integer in1 = new Integer(cab.getInt("minRating"));
-										Integer in2 = new Integer(currentUser.getInt("rating"));
-										Log.d("minRating", in1.toString());
-										Log.d("userRating", in2.toString());
-										if(cab.getInt("minRating") <= currentUser.getInt("rating")){
-											Log.d("rating", cab.getString("cabID"));
-											adapter.add("Cab ID: " + cab.getString("cabID"));
-										}
+					// list out all the offers found
+					for (ParseObject cab : cabList) {
+						// Only post offers
+						if (cab.getBoolean("isOffering")) {
+							Log.d("offersFound", cab.getString("cabID"));
+							if (cab.getInt("maxPassengers") > cab
+									.getInt("numPassengers")) {
+								Log.d("Pasengers", cab.getString("cabID"));
+								if (cab.getString("gender").equals("Either")
+										|| cab.getString("gender")
+												.equals(currentUser
+														.getString("gender"))) {
+									Log.d("gender", cab.getString("cabID"));
+									Integer in1 = new Integer(cab
+											.getInt("minRating"));
+									Integer in2 = new Integer(currentUser
+											.getInt("rating"));
+									Log.d("minRating", in1.toString());
+									Log.d("userRating", in2.toString());
+									if (cab.getInt("minRating") <= currentUser
+											.getInt("rating")) {
+										Log.d("rating", cab.getString("cabID"));
+										adapter.add("Cab ID: "
+												+ cab.getString("cabID"));
 									}
 								}
 							}
 						}
-						Toast.makeText(ListOffersGUI.this, "No offers available",
-								Toast.LENGTH_SHORT).show();
-					} else {
-						Toast.makeText(ListOffersGUI.this, "No offers found",
-								Toast.LENGTH_SHORT).show();
-
+					}
+					if (adapter.isEmpty()) {
+						Toast.makeText(ListOffersGUI.this,
+								"No offers available", Toast.LENGTH_SHORT)
+								.show();
 					}
 
 				} else {
@@ -108,6 +113,29 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				String value = (String) adapter.getItemAtPosition(position);
 				Toast.makeText(ListOffersGUI.this, value, Toast.LENGTH_SHORT)
 						.show();
+
+				// Find all users with cadID
+				ParseQuery<ParseObject> offerersQuery = ParseQuery
+						.getQuery("User");
+				offerersQuery.findInBackground(new FindCallback<ParseObject>() {
+
+					@Override
+					public void done(List<ParseObject> offerersList,
+							ParseException e) {
+						
+						ArrayList<String> arrayList = new ArrayList<String>();
+						for(ParseObject offerer : offerersList){
+							if (offerer.get("currentCabId").equals(cabID)){							
+								arrayList.add(offerer.getString("objecetID"));
+								Toast.makeText(getApplicationContext(), offerer.getString("name"), Toast.LENGTH_SHORT).show();
+							}
+						}
+						
+						//For each offerer in the arrayList, send a parse notification asking them to accept/reject request
+						
+						
+					}
+				});
 			}
 
 		});
@@ -117,16 +145,17 @@ public class ListOffersGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-					// delete request filter
-					saveFilter((ParseObject) currentUser.get("filter"));
-					getFilter().deleteInBackground();
+				// delete request filter
+				saveFilter((ParseObject) currentUser.get("filter"));
+				getFilter().deleteInBackground();
 
-					currentUser.put("requesting", false);
-					currentUser.remove("filter");
-					currentUser.saveInBackground();	
-					Intent intent = new Intent(ListOffersGUI.this, MainMenuGUI.class);
-					startActivity(intent);
-					finish();			
+				currentUser.put("requesting", false);
+				currentUser.remove("filter");
+				currentUser.saveInBackground();
+				Intent intent = new Intent(ListOffersGUI.this,
+						MainMenuGUI.class);
+				startActivity(intent);
+				finish();
 			}
 		});
 	}

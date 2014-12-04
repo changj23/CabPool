@@ -60,6 +60,7 @@
 	<string name="submit_rating">Submit Rating</string>
 	<string name="create_request">Create Request</string>
 	<string name="cancel_request">Cancel Request</string>
+	<string name="create_profile">Create Profile</string>
 	<string name="delete_account">Delete Account</string>
 	<string name="password_col">Password:</string>
     
