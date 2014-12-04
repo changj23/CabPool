@@ -84,7 +84,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/male" >
+            android:text="@string/male" 
+            android:onClick="genderButtons">
         </RadioButton>
 
         <RadioButton
@@ -93,7 +94,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/female" >
+            android:text="@string/female" 
+            android:onClick="genderButtons">
         </RadioButton>
     </RadioGroup>
 
