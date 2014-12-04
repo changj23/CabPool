@@ -98,13 +98,13 @@ public class RequestCabGUI extends AbstractGUIActivity {
 				//get current position
 				LocationManager locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
 				LocationListener loc = new CabPoolLocationListener();
-				locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10,
+				locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0,
 						loc);
 				
 				gender = String.valueOf(genderSpinner.getSelectedItem());
 				minRating = ratingNumberPicker.getValue();
-				maxPassengers = maxPassNumberPicker.getValue();
-
+				maxPassengers = maxPassNumberPicker.getValue();		
+				
 				// create new filter
 				ParseObject filter = new ParseObject("Filters");
 				filter.put("minRating", minRating);
@@ -119,6 +119,7 @@ public class RequestCabGUI extends AbstractGUIActivity {
 						if (e == null) {
 							
 							currentUser.put("filter", getFilter());
+							currentUser.put("origin", originPosition);
 							currentUser.put("requesting", true);
 							currentUser.saveInBackground();
 							
@@ -163,17 +164,6 @@ public class RequestCabGUI extends AbstractGUIActivity {
 		}
 	}
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-		// ADD GEOLCOATION QUERY HERE
-		LocationManager locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
-		LocationListener loc = new CabPoolLocationListener();
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 10,
-				loc);
-		
-	}
-
 	public class CabPoolLocationListener implements LocationListener {
 
 		@Override
@@ -183,11 +173,6 @@ public class RequestCabGUI extends AbstractGUIActivity {
 			originPosition = new ParseGeoPoint(location.getLatitude(),
 					location.getLongitude());
 			
-			/*String Text = "My current location is: " + "Latitude = "
-					+ position.latitude + "Longitude = "
-					+ position.longitude;
-			Toast.makeText(getApplicationContext(), Text, Toast.LENGTH_SHORT)
-					.show();*/
 		}
 
 		@Override

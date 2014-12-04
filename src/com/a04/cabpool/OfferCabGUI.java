@@ -3,6 +3,9 @@ package com.a04.cabpool;
 import java.util.List;
 
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.a04.cabpool.RequestCabGUI.CabPoolLocationListener;
 import com.parse.FindCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
@@ -32,6 +36,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private int minRating, maxPassengers;
 	private ParseObject filter, offer, locationClass, cab;
 	private TextView destinationText;
+	private ParseGeoPoint currentLocation;
 	private ParseGeoPoint destinationPosition;
 
 	private String cabID = null;
@@ -161,8 +166,13 @@ public class OfferCabGUI extends AbstractGUIActivity {
 												cab.put("maxPassengers", maxPassengers);
 											}
 											
-											// set gender
+											// TODO: set gender
 											
+											// get current location
+											LocationManager locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
+											LocationListener loc = new CabPoolLocationListener();
+											locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, loc);		
+																						
 											saveCab(cab);
 											
 											// check if all passengers are in "offering" mode
@@ -174,8 +184,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 												public void done(
 														List<ParseUser> usersList,
 														ParseException e) {
-													// TODO Auto-generated method stub
+													// TODO Auto-generated method stub																										
 													if(e == null){
+														getCab().put("currentLocation", currentLocation);
 														//
 														if(usersList.isEmpty() == true){
 															getCab().put("isOffering", true);
@@ -279,9 +290,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				locationClass.put("locationName", destinationAddress);
 				
 				//locationClass.saveInBackground();
-				saveLocationObject(locationClass);
-				
-				
+				saveLocationObject(locationClass);			
 			}
 			if(resultCode == RESULT_CANCELED){
 				
@@ -289,6 +298,34 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		}
 	}
 
+	public class CabPoolLocationListener implements LocationListener {
+
+		@Override
+		public void onLocationChanged(Location location) {
+			currentLocation = new ParseGeoPoint(location.getLatitude(),
+					location.getLongitude());
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			//
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+			Toast.makeText(getApplicationContext(), "GPS ON", Toast.LENGTH_LONG)
+					.show();
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+			Toast.makeText(getApplicationContext(), "GPS OFF",
+					Toast.LENGTH_LONG).show();
+
+		}
+
+	}
+	
 	// allows accessing filter in "done" callback function
 	private void saveFilter(ParseObject filter) {
 		this.filter = filter;
