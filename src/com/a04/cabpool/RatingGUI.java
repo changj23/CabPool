@@ -1,6 +1,8 @@
 package com.a04.cabpool;
 
 import java.util.List;
+import java.lang.Number;
+import java.lang.Float;
 
 import com.a04.cabpool.R;
 import com.a04.cabpool.R.id;
@@ -32,23 +34,26 @@ public class RatingGUI extends AbstractGUIActivity {
 
 	private ParseUser currentUser;
 	public float cabRatingFloat;
-	public float cabRatingNumFloat;
-	public Number oldRating;
-	public Number cabRatingNum;
-	public Number cabRating;
-	public float oldRatingFloat;
-	public boolean isRatePressed;
-	public boolean isEnabled;
 	public Button rateCabButton;
 	public RatingBar cabRatingBar;
 	public TextView Message;
 	private String cabID;
 	private ParseObject offer, filter, cab;
+	public ParseObject userCab;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_rating);
+		
+		/*ParseObject userCab = new ParseObject("Cab");
+		userCab.put("minRating", -1);
+		userCab.put("maxPassengers", 5);
+		userCab.put("gender", "Male");
+		userCab.put("isOffering", false);
+		userCab.put("numPassengers", 2);
+		userCab.put("cabID", "88888");*/
+		
 
 		rateCabButton = (Button) findViewById(R.id.rateCabButton);
 		Message = (TextView) findViewById(R.id.Message);
@@ -66,23 +71,7 @@ public class RatingGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				// if (cabRatingNum != null) {
-				// oldRating = currentUser.getNumber("rating");
-				// cabRatingNum = currentUser.getNumber("ratingNum");
-				// oldRatingFloat = oldRating.floatValue();
-				// cabRatingNumFloat = cabRatingNum.floatValue();
-				// float num = cabRatingNumFloat * oldRatingFloat;
-				// num = num + cabRatingFloat;
-				// cabRatingNumFloat = cabRatingNumFloat + 1;
-				// cabRatingFloat = num / cabRatingNumFloat;
-				// currentUser.put("rating", cabRatingFloat);
-				// currentUser.put("ratingNum", cabRatingNumFloat);
-				//
-				// }else{
-				// cabRatingNumFloat=1;
-				// currentUser.put("rating", cabRatingFloat);
-				// currentUser.put("ratingNum", cabRatingNumFloat);
-				// }
+
 
 				if (getFilter() != null) {
 					currentUser.put("offering", false);
@@ -108,6 +97,47 @@ public class RatingGUI extends AbstractGUIActivity {
 									Log.d("cabid", "Cab " + cabID + " found!");
 
 									saveCab(cab);
+									
+									Number cabRating=cab.getNumber("cabRating");
+									Number cabRatingNum=cab.getNumber("cabRatingNum");
+									if (cabRating!=null){
+										float floatRating=cabRating.floatValue();
+										float floatCabNum=cabRatingNum.floatValue();
+										float intermediateNum= floatCabNum*floatRating;
+										intermediateNum=intermediateNum+cabRatingFloat;
+										floatCabNum=floatCabNum+1;
+										floatRating=floatRating/floatCabNum;
+										cab.put("cabRating", floatRating);
+										cab.put("cabRatingNum", floatCabNum);
+										
+									}else{
+										float floatRating=cabRatingFloat;
+										cab.put("cabRating", floatRating);
+										float floatCabNum=0;
+										floatCabNum=floatCabNum+1;
+										cab.put("cabRatingNum", floatCabNum);
+									}
+									
+									Number personRating=currentUser.getNumber("rating");
+									Number personRatingNum=currentUser.getNumber("ratingNum");
+									if (personRating!=null){
+										float floatRating=cabRating.floatValue();
+										float floatCabNum=cabRatingNum.floatValue();
+										float floatPersonRating=personRating.floatValue();
+										float floatPersonNum=personRatingNum.floatValue();
+										float intermediateNum= floatPersonNum*floatPersonRating;
+										intermediateNum=intermediateNum+floatRating*floatCabNum;
+										floatPersonNum=floatPersonNum+floatCabNum;
+										floatPersonRating=floatPersonRating/floatPersonNum;
+										currentUser.put("rating", floatPersonRating);
+										currentUser.put("ratingNum", floatPersonNum);
+									}else{
+										float floatRating=cabRating.floatValue();
+										float floatCabNum=cabRatingNum.floatValue();
+										currentUser.put("rating", floatRating);
+										currentUser.put("ratingNum", floatCabNum);
+									}
+									
 
 									// update strict filters for cab
 									ParseQuery<ParseUser> userQuery = ParseUser
