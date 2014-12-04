@@ -102,6 +102,17 @@ public class MainMenuGUI extends AbstractGUIActivity {
 				// finish();
 			}
 		});
+		
+		arrivedButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MainMenuGUI.this, TransactionGUI.class);
+				startActivity(intent);
+				finish();
+			}
+		});
 	}
 
 	private void setRequesting(boolean requesting) {
@@ -136,6 +147,13 @@ public class MainMenuGUI extends AbstractGUIActivity {
 
 		offering = currentUser.getBoolean("offering");
 		requesting = currentUser.getBoolean("requesting");
+		
+		if (offering == true) {
+			arrivedButton.setVisibility(View.VISIBLE);
+		}
+		else {
+			arrivedButton.setVisibility(View.GONE);
+		}
 
 
 //		 if (offering == true) {

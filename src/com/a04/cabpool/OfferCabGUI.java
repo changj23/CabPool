@@ -233,8 +233,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	
 	public void onStart(){
 		super.onStart();
-		// Reset cabID
-		cabID = null;
 	}
 
 	// QR code scanner
