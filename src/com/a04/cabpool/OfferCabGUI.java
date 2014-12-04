@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
@@ -23,6 +24,7 @@ import com.parse.SaveCallback;
 public class OfferCabGUI extends AbstractGUIActivity {
 
 	private ParseUser currentUser;
+	
 	private Spinner genderSpinner;
 	private NumberPicker ratingNumberPicker, maxPassNumberPicker;
 	private Button createOfferButton, destinationSearch;
@@ -31,7 +33,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	private ParseObject filter, offer, locationClass, cab;
 	private TextView destinationText;
 	private ParseGeoPoint destinationPosition;
-	
 
 	private String cabID = null;
 
@@ -40,13 +41,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer);
 
-		// Reset cabID
-		cabID = null;
-
-		// for QR code scanner - Does the QR reader go back to this screen
-		// after?
+		// for QR code scanner
 		IntentIntegrator integrator = new IntentIntegrator(this);
 		integrator.initiateScan();
+		Toast.makeText(getApplicationContext(), "Scan the Cab's QR Code", Toast.LENGTH_LONG).show();
 		
 		createOfferButton = (Button) findViewById(R.id.createOffer);
 		genderSpinner = (Spinner) findViewById(R.id.gender_spinner);
@@ -130,10 +128,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							
 							currentUser.put("offering", true);
 							currentUser.put("currentCabId", cabID);
-							currentUser.put("filter", getFilter());
-							
+							currentUser.put("filter", getFilter());							
 							currentUser.saveInBackground();
-							
 							// find parse cab object whose id matches scanned cabID
 							ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
 							cabQuery.whereEqualTo("cabID", cabID);
@@ -178,17 +174,21 @@ public class OfferCabGUI extends AbstractGUIActivity {
 														ParseException e) {
 													// TODO Auto-generated method stub
 													if(e == null){
+														//
 														if(usersList.isEmpty() == true){
 															getCab().put("isOffering", true);
 														} else {
-															for(int i = 0; i < usersList.size(); i++){
-																if(usersList.get(i).getBoolean("offering") == false){
+															getCab().put("isOffering", true);
+															for(ParseObject user : usersList){
+																if(user.getBoolean("offering") == false){
 																	getCab().put("isOffering", false);
 																}
 															}
 														}
-														getCab().put("numPassengers", getCab().getInt("numPassengers") + 1);
-														getCab().saveInBackground();
+														
+														//Why do you do this/what are you doing?
+//														getCab().put("numPassengers", getCab().getInt("numPassengers") + 1);
+//														getCab().saveInBackground();
 													} else {
 														// error
 														Log.d("error", e.getLocalizedMessage());
@@ -196,14 +196,11 @@ public class OfferCabGUI extends AbstractGUIActivity {
 												}
 												
 											});
-
-
 										} else {
 											Toast.makeText(OfferCabGUI.this,
 													"Cab not found",
 													Toast.LENGTH_SHORT).show();
-										}
-									
+										}									
 									} else {
 										Toast.makeText(OfferCabGUI.this,
 												e.getLocalizedMessage(),
@@ -233,6 +230,12 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			}
 		});
 	}
+	
+	public void onStart(){
+		super.onStart();
+		// Reset cabID
+		cabID = null;
+	}
 
 	// QR code scanner
 	// Duplicated from RequestCabGUI
@@ -246,9 +249,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			cabID = scanResult.getContents();
 			// Toast.makeText(OfferCabGUI.this, cabID,
 			// Toast.LENGTH_LONG).show();
-			if (cabID == null || cabID.equals("")) {
-				Toast.makeText(getApplicationContext(), "Scan Cancelled",
-						Toast.LENGTH_SHORT).show();
+			if (cabID == null) {
+				Toast.makeText(OfferCabGUI.this, "Scan Cancelled",
+						Toast.LENGTH_LONG).show();
 				Intent i = new Intent(OfferCabGUI.this, MainMenuGUI.class);
 				startActivity(i);
 				finish();
@@ -288,14 +291,6 @@ public class OfferCabGUI extends AbstractGUIActivity {
 
 	private ParseObject getFilter() {
 		return this.filter;
-	}
-
-	private void saveOffer(ParseObject offer) {
-		this.offer = offer;
-	}
-
-	private ParseObject getOffer() {
-		return this.offer;
 	}
 	
 	private void saveLocationObject(ParseObject locationClass){
