@@ -68,7 +68,7 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 									
 									// update strict filters for cab
 									ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-									userQuery.whereEqualTo("cabID", cabID);
+									userQuery.whereEqualTo("currentCabId", cabID);
 									userQuery.findInBackground(new FindCallback<ParseUser>(){
 
 										@Override
@@ -78,34 +78,52 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 											// TODO Auto-generated method stub
 											if(e == null){
 												if(usersList.isEmpty() == true){
+													Log.d("debug", "empty");
 													getCab().put("isOffering", false);
 													getCab().put("minRating", -1);
 													getCab().put("maxPassengers", -1);
 													getCab().put("numPassengers", 0);
 												} else {
+													Log.d("debug", "not empty");
 													int minRating, maxPassengers, numPassengers;
 													int cabMinRating, cabMaxPassengers, cabNumPassengers;
 													String gender;
 													getCab().put("isOffering", true);
 													for(ParseUser user : usersList){
-														minRating = user.getParseObject("filter").getInt("minRating");
-														maxPassengers = user.getParseObject("filter").getInt("maxPassengers");
-														cabMinRating = getCab().getInt("minRating");
-														cabMaxPassengers = getCab().getInt("maxPassengers");
-														// set strict minRating
-														if(minRating > cabMinRating || cabMinRating == -1){
-															getCab().put("minRating", minRating);
+														try {
+															Log.d("debug", user.getString("name"));
+															ParseObject userFilter = user.getParseObject("filter");
+															Log.d("debug", "stage 1");
+															minRating = userFilter.fetchIfNeeded().getInt("minRating");
+															Log.d("debug", "stage 2");
+															maxPassengers = userFilter.fetchIfNeeded().getInt("maxPassengers");
+															Log.d("debug", "stage 3");
+															cabMinRating = getCab().getInt("minRating");
+															Log.d("debug", "stage 4");
+															cabMaxPassengers = getCab().getInt("maxPassengers");
+															Log.d("debug", "stage 5");
+															// set strict minRating
+															if(minRating > cabMinRating || cabMinRating == -1){
+																getCab().put("minRating", minRating);
+																Log.d("debug", "stage 5 if");
+															}
+															Log.d("debug", "stage 6");
+															// set strict maxPassengers
+															if(maxPassengers < cabMaxPassengers || cabMaxPassengers == -1){
+																getCab().put("maxPassengers", maxPassengers);
+																Log.d("debug", "stage 6 if");
+															}
+															Log.d("debug", "stage 7");
+															// ensure all users are in offering mode
+															if(user.getBoolean("offering") == false){
+																getCab().put("isOffering", false);
+																Log.d("debug", "stage 7 if");
+															}
+															Log.d("debug", "stage 8");
+														} catch (ParseException pe){
+															Log.d("debug", pe.getLocalizedMessage());
 														}
-														
-														// set strict maxPassengers
-														if(maxPassengers < cabMaxPassengers || cabMaxPassengers == -1){
-															getCab().put("maxPassengers", maxPassengers);
-														}
-														
-														// ensure all users are in offering mode
-														if(user.getBoolean("offering") == false){
-															getCab().put("isOffering", false);
-														}
+
 														
 													}
 

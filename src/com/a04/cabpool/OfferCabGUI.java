@@ -165,7 +165,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 											
 											// check if all passengers are in "offering" mode
 											ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
-											userQuery.whereEqualTo("cabID", cabID);
+											userQuery.whereEqualTo("currentCabId", cabID);
 											userQuery.findInBackground(new FindCallback<ParseUser>(){
 
 												@Override
@@ -186,9 +186,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 															}
 														}
 														
-														//Why do you do this/what are you doing?
-//														getCab().put("numPassengers", getCab().getInt("numPassengers") + 1);
-//														getCab().saveInBackground();
+														// add to number of passengers
+														getCab().put("numPassengers", getCab().getInt("numPassengers") + 1);
+														getCab().saveInBackground();
 													} else {
 														// error
 														Log.d("error", e.getLocalizedMessage());
