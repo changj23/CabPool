@@ -46,6 +46,12 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 				if(getFilter() != null){
 					currentUser.put("offering", false);
 					currentUser.remove("currentCabId");
+					try {
+						currentUser.save();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						Log.d("debug", "removesaveUser: " + e1.getLocalizedMessage());
+					}
 					
 					// find parse cab object whose id matches scanned cabID
 					ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
@@ -79,7 +85,7 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 											if(e == null){
 												if(usersList.isEmpty() == true){
 													Log.d("debug", "empty");
-													getCab().put("isOffering", false);
+													getCab().put("isOffering", true);
 													getCab().put("minRating", -1);
 													getCab().put("maxPassengers", -1);
 													getCab().put("numPassengers", 0);
@@ -90,7 +96,11 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 													String gender;
 													getCab().put("isOffering", true);
 													for(ParseUser user : usersList){
+														Log.d("debug", "usersList size: " + usersList.size());
 														try {
+															getCab().put("minRating", -1);
+															getCab().put("maxPassengers", -1);
+					
 															Log.d("debug", user.getString("name"));
 															ParseObject userFilter = user.getParseObject("filter");
 															Log.d("debug", "stage 1");
@@ -114,11 +124,19 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 																Log.d("debug", "stage 6 if");
 															}
 															Log.d("debug", "stage 7");
+															
 															// ensure all users are in offering mode
 															if(user.getBoolean("offering") == false){
 																getCab().put("isOffering", false);
 																Log.d("debug", "stage 7 if");
 															}
+															if(user.getString("gender").equalsIgnoreCase("male")){
+																
+															}
+															Log.d("debug", "user...minRating: " + minRating
+																	+ " maxPassengers: " + maxPassengers);
+															Log.d("debug", "cab...minRating: " + getCab().getInt("minRating")
+																	+ " maxPassengers: " + getCab().getInt("maxPassengers"));
 															Log.d("debug", "stage 8");
 														} catch (ParseException pe){
 															Log.d("debug", pe.getLocalizedMessage());
@@ -128,9 +146,18 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 													}
 
 												}
-												
+												Log.d("debug", "saving..minRating: " + getCab().getInt("minRating")
+														+ " maxPassengers: " + getCab().getInt("maxPassengers"));
 												getCab().put("numPassengers", usersList.size());
 												getCab().saveInBackground();
+												
+												// remove filter
+												getFilter().deleteInBackground();
+												
+												// remove data from current user
+												currentUser.remove("filter");
+												currentUser.remove("destination");
+												currentUser.saveInBackground();
 											} else {
 												// error
 												Log.d("error", e.getLocalizedMessage());
@@ -154,14 +181,6 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 						}
 						
 					});
-					
-					// remove filter
-					getFilter().deleteInBackground();
-					
-					// remove data from current user
-					currentUser.remove("filter");
-					currentUser.remove("destination");
-					currentUser.saveInBackground();
 					
 					finish();
 				} else {
