@@ -42,6 +42,8 @@ public class MapsActivity extends AbstractGUIActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_maps);
+		
+		Log.d("debug", "started mapsActivity");
 
 		context = this;
 
@@ -55,6 +57,8 @@ public class MapsActivity extends AbstractGUIActivity {
 				// TODO Auto-generated method stub
 				// Getting reference to EditText to get the user input
 				// location
+				
+				Log.d("debug", "find button pressed on mapsActivity");
 
 				InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -88,6 +92,8 @@ public class MapsActivity extends AbstractGUIActivity {
 
 		// make sure that location service is enabled
 		if (location != null) {
+			
+			Log.d("debug", "location not null");
 
 			map = ((MapFragment) getFragmentManager()
 					.findFragmentById(R.id.map)).getMap();
@@ -182,7 +188,7 @@ public class MapsActivity extends AbstractGUIActivity {
 								marker.getPosition().latitude);
 						returnIntent.putExtra("destinationPosLong",
 								marker.getPosition().longitude);
-						Log.d("destination", marker.getPosition().latitude
+						Log.d("debug", marker.getPosition().latitude
 								+ ":" + marker.getPosition().longitude);
 
 						setResult(RESULT_OK, returnIntent);

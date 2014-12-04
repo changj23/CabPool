@@ -104,6 +104,7 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				gender = String.valueOf(genderSpinner.getSelectedItem());
 				minRating = ratingNumberPicker.getValue();
 				maxPassengers = maxPassNumberPicker.getValue();
+				
 
 				// create new filter
 				ParseObject filter = new ParseObject("Filters");
@@ -128,7 +129,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 							
 							currentUser.put("offering", true);
 							currentUser.put("currentCabId", cabID);
-							currentUser.put("filter", getFilter());							
+							currentUser.put("filter", getFilter());		
+							currentUser.put("destination", getLocationObject());
 							currentUser.saveInBackground();
 							// find parse cab object whose id matches scanned cabID
 							ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
@@ -239,6 +241,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 	// Duplicated from RequestCabGUI
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		
+		Log.d("debug", "onActivityResult");
+		
 		IntentResult scanResult = IntentIntegrator.parseActivityResult(
 				requestCode, resultCode, intent);
 
@@ -258,8 +262,9 @@ public class OfferCabGUI extends AbstractGUIActivity {
 		}
 		
 		if(requestCode == 1){
+			Log.d("debug", "requestCode == 1");
 			if(resultCode == RESULT_OK){
-				
+				Log.d("debug", "resultCode = OK");
 				String destinationAddress = intent.getStringExtra("destinationAddress");
 				Double destinationLat = intent.getDoubleExtra("destinationPosLat", 0);
 				Double destinationLong = intent.getDoubleExtra("destinationPosLong", 0);
@@ -272,8 +277,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				ParseObject locationClass = new ParseObject("Location");
 				locationClass.put("geopoint", destinationPosition);
 				locationClass.put("locationName", destinationAddress);
+				
 				//locationClass.saveInBackground();
 				saveLocationObject(locationClass);
+				
 				
 			}
 			if(resultCode == RESULT_CANCELED){
