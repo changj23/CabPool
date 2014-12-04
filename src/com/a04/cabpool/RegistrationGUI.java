@@ -60,7 +60,7 @@ public class RegistrationGUI extends Activity {
 	static final int DATE_DIALOG_ID1 = 1;
 
 	// Gender button set up:
-	public void genderRadio(View view) {
+	public void genderButtons(View view) {
 		// Is the button now checked?
 		boolean checked = ((RadioButton) view).isChecked();
 
@@ -68,11 +68,11 @@ public class RegistrationGUI extends Activity {
 		switch (view.getId()) {
 		case R.id.femaleButton:
 			if (checked)
-				gender = "female";
+				gender = "Female";
 			break;
 		case R.id.maleButton:
 			if (checked)
-				gender = "male";
+				gender = "Male";
 			break;
 		}
 	}
@@ -153,6 +153,7 @@ public class RegistrationGUI extends Activity {
 					newUser.put("birthDate", birthDate);
 					newUser.put("cardNum", cardNum);
 					newUser.put("expDate", expDate);
+					newUser.put("gender",gender);
 					//Define flags
 					newUser.put("offering", false);
 					newUser.put("requesting", false);
@@ -184,6 +185,11 @@ public class RegistrationGUI extends Activity {
 										"An account with this email already exists", Toast.LENGTH_SHORT)
 										.show();
 								
+							}
+							else if (e.getCode() == 125) {
+								Toast.makeText(getApplicationContext(),
+										"Please enter a valid email address", Toast.LENGTH_SHORT)
+										.show();
 							}
 							else {
 								int i = e.getCode();
