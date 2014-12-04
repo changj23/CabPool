@@ -1,5 +1,6 @@
 package com.a04.cabpool;
 
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.Intent;
@@ -104,6 +105,10 @@ public class OfferCabGUI extends AbstractGUIActivity {
 				gender = String.valueOf(genderSpinner.getSelectedItem());
 				minRating = ratingNumberPicker.getValue();
 				maxPassengers = maxPassNumberPicker.getValue();
+				
+				Calendar rightNow = Calendar.getInstance();
+				long time=rightNow.getTimeInMillis();
+				currentUser.put("timeMillis", time);
 
 				// create new filter
 				ParseObject filter = new ParseObject("Filters");

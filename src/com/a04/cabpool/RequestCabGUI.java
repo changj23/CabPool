@@ -1,5 +1,7 @@
 package com.a04.cabpool;
 
+import java.util.Calendar;
+
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -94,6 +96,10 @@ public class RequestCabGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				
+				Calendar rightNow = Calendar.getInstance();
+				long time=rightNow.getTimeInMillis();
+				currentUser.put("timeMillis", time);
 				
 				//get current position
 				LocationManager locMan = (LocationManager) getSystemService(LOCATION_SERVICE);
