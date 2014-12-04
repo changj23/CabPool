@@ -120,44 +120,7 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				push.setQuery(pushQuery); 
 				push.setMessage("Test");
 				push.sendInBackground();
-				
-/*				offerersQuery.findInBackground(new FindCallback<ParseUser>() {
-					@Override
-					public void done(List<ParseUser> offerersList, ParseException e) {
-						Log.d("debug", "1");
-						ArrayList<String> arrayList = new ArrayList<String>();
-						if (e == null) {
-							//Integer i2 = new Integer(offerersList.size());
-							//Log.d("debug", "List size: " + i2.toString());
-							for (ParseUser offerer : offerersList) {
-								Log.d("debug", "55");
-								Log.d("debug", offerer.getString("name"));
-								if (offerer.getBoolean("offering") == true) {
-									Log.d("debug", offerer.getString("currentCabId"));
-									if (offerer.getString("currentCabId").equals(cabID)) {
-										Log.d("Test", "Offer");
-										Log.d("Test", offerer.getString("objectId"));
-										arrayList.add(offerer.getString("objectId"));
-										Integer i = new Integer(arrayList.size());
-										Log.d("Test", i.toString());
-										Log.d("Test", offerer.getString("name"));
-									}
-								}
-								Log.d("debug", "2");
-								Log.d("debug", cabID);
-								
-								// For each offerer in the arrayList, send a push notification asking them to accept/reject request
-								for(int i = 0; i < arrayList.size(); i ++){
-									// create an acceptance object to track responses
-									ParseObject acceptance = new ParseObject("Acceptance");
-									acceptance.put("cabID",cabID);
-									acceptance.put("offererID", arrayList.get(i));
-									acceptance.saveInBackground();
-								}								 
-							}
-						}
-					}
-				});*/
+
 			}
 
 		});

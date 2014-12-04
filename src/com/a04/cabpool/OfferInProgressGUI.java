@@ -140,11 +140,8 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 															Log.d("debug", "stage 8");
 														} catch (ParseException pe){
 															Log.d("debug", pe.getLocalizedMessage());
-														}
-
-														
+														}														
 													}
-
 												}
 												Log.d("debug", "saving..minRating: " + getCab().getInt("minRating")
 														+ " maxPassengers: " + getCab().getInt("maxPassengers"));
