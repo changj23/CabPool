@@ -55,7 +55,7 @@ public class RequestInProgressGUI extends AbstractGUIActivity {
 				startActivity(i);
 				// finish(); //?
 			}
-			 Toast.makeText(RequestInProgressGUI.this, cabID, Toast.LENGTH_SHORT).show();
+			 Toast.makeText(getApplicationContext(), cabID, Toast.LENGTH_SHORT).show();
 			// Verify cabID
 			
 		} else {

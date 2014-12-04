@@ -23,7 +23,7 @@
     <Button
         android:id="@+id/cancelRequestButton"
         style="@style/button_style"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cancel_request" />
 

@@ -11,32 +11,31 @@
 
     <RatingBar
         android:id="@+id/cabRatingBar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
     <Button
+        style="@style/button_style"
         android:id="@+id/rateCabButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cabRatingBar"
         android:layout_alignRight="@+id/cabRatingBar"
         android:layout_below="@+id/cabRatingBar"
         android:layout_marginTop="20dp"
-        android:text="Rate!" />
-
-        android:layout_marginTop="16dp"
-        android:text="Rate" />
+        android:text="@string/submit_rating" />
 
     <TextView
+        style="@style/text_style"
         android:id="@+id/Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/cabRatingBar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:text="Rate your ride!"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="30sp"
+        android:text="Rate your ride!" />
 
 </RelativeLayout>

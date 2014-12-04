@@ -185,6 +185,11 @@ public class RegistrationGUI extends Activity {
 										.show();
 								
 							}
+							else if (e.getCode() == 125) {
+								Toast.makeText(getApplicationContext(),
+										"Please enter a valid email address", Toast.LENGTH_SHORT)
+										.show();
+							}
 							else {
 								int i = e.getCode();
 								StringBuilder sb = new StringBuilder();
@@ -274,22 +279,4 @@ public class RegistrationGUI extends Activity {
 						.append(bDay).append("-").append(bYear).append(" "));
 	};
 
-	// @Override
-	// public boolean onCreateOptionsMenu(Menu menu) {
-	// // Inflate the menu; this adds items to the action bar if it is present.
-	// getMenuInflater().inflate(R.menu.menu_not_logged_in, menu);
-	// return true;
-	// }
-	//
-	// @Override
-	// public boolean onOptionsItemSelected(MenuItem item) {
-	// // Handle action bar item clicks here. The action bar will
-	// // automatically handle clicks on the Home/Up button, so long
-	// // as you specify a parent activity in AndroidManifest.xml.
-	// int id = item.getItemId();
-	// if (id == R.id.action_settings) {
-	// return true;
-	// }
-	// return super.onOptionsItemSelected(item);
-	// }
 }

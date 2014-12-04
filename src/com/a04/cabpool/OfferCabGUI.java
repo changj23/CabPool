@@ -247,8 +247,8 @@ public class OfferCabGUI extends AbstractGUIActivity {
 			// Toast.makeText(OfferCabGUI.this, cabID,
 			// Toast.LENGTH_LONG).show();
 			if (cabID == null || cabID.equals("")) {
-				Toast.makeText(OfferCabGUI.this, "Scan Cancelled",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "Scan Cancelled",
+						Toast.LENGTH_SHORT).show();
 				Intent i = new Intent(OfferCabGUI.this, MainMenuGUI.class);
 				startActivity(i);
 				finish();
