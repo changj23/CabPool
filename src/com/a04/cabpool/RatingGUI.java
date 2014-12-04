@@ -57,6 +57,7 @@ public class RatingGUI extends AbstractGUIActivity {
 		cabRatingFloat = cabRatingBar.getRating();
 
 		currentUser = ParseUser.getCurrentUser();
+		cabID = currentUser.getString("currentCabId");
 		
 		ParseObject filter = currentUser.getParseObject("filter");
 		saveFilter(filter);
@@ -85,6 +86,7 @@ public class RatingGUI extends AbstractGUIActivity {
 				// }
 
 				if(getFilter() != null){
+					
 					currentUser.put("offering", false);
 					currentUser.remove("currentCabId");
 					try {
@@ -96,7 +98,9 @@ public class RatingGUI extends AbstractGUIActivity {
 					
 					// find parse cab object whose id matches scanned cabID
 					ParseQuery<ParseObject> cabQuery = ParseQuery.getQuery("Cab");
+					Log.d("debug", "cabId: " + cabID);
 					cabQuery.whereEqualTo("cabID", cabID);
+					
 					cabQuery.findInBackground(new FindCallback<ParseObject>(){
 
 						@Override
@@ -264,5 +268,13 @@ public class RatingGUI extends AbstractGUIActivity {
 	}
 	private void saveFilter(ParseObject filter) {
 		this.filter = filter;
+	}
+	
+	private void saveCabID(String cabID){
+		this.cabID = cabID;
+	}
+	
+	private String getCabID(){
+		return this.cabID;
 	}
 }
