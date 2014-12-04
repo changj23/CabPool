@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         style="@style/text_style"
         android:textSize="30sp"
-        android:text="@string/edit_profile"
+        android:text="@string/create_profile"
         android:gravity="center" />
     
     <EditText

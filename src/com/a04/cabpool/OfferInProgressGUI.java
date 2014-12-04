@@ -36,38 +36,6 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 		ParseObject filter = currentUser.getParseObject("filter");
 		saveFilter(filter);
 		
-		/*
-		ParseQuery<ParseObject> offerQuery = ParseQuery.getQuery("Offer");
-		offerQuery.whereEqualTo("cabId", cabId);
-		
-		//Log.d("cabid", cabId);
-		
-		offerQuery.findInBackground(new FindCallback<ParseObject>() {
-
-			@Override
-			public void done(List<ParseObject> offersList, ParseException e) {
-				// TODO Auto-generated method stub
-				if (e == null) {
-					// no errors (doesn't imply an object was found)
-					
-					//offer = offersList.get(0); // get offer
-					//filter = offer.getParseObject("filters"); // get associated filter
-					
-					//Toast.makeText(OfferInProgressGUI.this, offer.getObjectId(), Toast.LENGTH_SHORT).show();
-					
-					//saveFilter(filter);
-					//saveOffer(offer);
-					
-					
-				} else {
-					Toast.makeText(OfferInProgressGUI.this,
-							e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-				}
-			}
-
-		});
-		*/
-
 		// set offering status in current user to false
 		cancelOfferButton.setOnClickListener(new View.OnClickListener() {
 
@@ -91,6 +59,8 @@ public class OfferInProgressGUI extends AbstractGUIActivity {
 							if(e == null){
 								// note that no error does not imply a cab was found
 								if(cabsList.isEmpty() == false) {
+									
+									//Why are you still saving cab?
 									ParseObject cab = cabsList.get(0);
 									Log.d("cabid", "Cab " + cabID + " found!");
 									
