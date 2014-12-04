@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -36,7 +38,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 
 		offersListView = (ListView) findViewById(R.id.offersListView);
 		cancelRequestButton = (Button) findViewById(R.id.cancelRequestButton);
-		// this.adapter = adapter;
 
 		currentUser = ParseUser.getCurrentUser();
 		currentUser.put("rating", 3);
@@ -57,9 +58,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 							ListOffersGUI.this, R.layout.simplerow, arrayList);
 					offersListView.setAdapter(adapter);
 
-					// Toast.makeText(getApplicationContext(), "TEST1",
-					// Toast.LENGTH_LONG).show();
-
 					// list out all the offers found
 					for (ParseObject cab : cabList) {
 						// Only post offers
@@ -67,21 +65,12 @@ public class ListOffersGUI extends AbstractGUIActivity {
 							Log.d("offersFound", cab.getString("cabID"));
 							if (cab.getInt("maxPassengers") > cab
 									.getInt("numPassengers")) {
-								Log.d("Pasengers", cab.getString("cabID"));
 								if (cab.getString("gender").equals("Either")
 										|| cab.getString("gender")
 												.equals(currentUser
 														.getString("gender"))) {
-									Log.d("gender", cab.getString("cabID"));
-									Integer in1 = new Integer(cab
-											.getInt("minRating"));
-									Integer in2 = new Integer(currentUser
-											.getInt("rating"));
-									Log.d("minRating", in1.toString());
-									Log.d("userRating", in2.toString());
 									if (cab.getInt("minRating") <= currentUser
 											.getInt("rating")) {
-										Log.d("rating", cab.getString("cabID"));
 										adapter.add("Cab ID: "
 												+ cab.getString("cabID"));
 									}
@@ -114,28 +103,57 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				Toast.makeText(ListOffersGUI.this, value, Toast.LENGTH_SHORT)
 						.show();
 
-				// Find all users with cadID
-				ParseQuery<ParseObject> offerersQuery = ParseQuery
-						.getQuery("User");
-				offerersQuery.findInBackground(new FindCallback<ParseObject>() {
+				cabID = value.substring(8, 13);
 
+				// Find all users with cabID				
+				ParseQuery offerersQuery = ParseUser.getQuery();
+				offerersQuery.whereEqualTo("currentCabId", cabID);
+				
+				ParseQuery pushQuery = ParseInstallation.getQuery();
+				pushQuery.whereMatchesQuery("user", offerersQuery);
+				ParsePush push = new ParsePush();
+				Log.d("Push", "1");
+				push.setQuery(pushQuery); 
+				push.setMessage("Test");
+				push.sendInBackground();
+				
+/*				offerersQuery.findInBackground(new FindCallback<ParseUser>() {
 					@Override
-					public void done(List<ParseObject> offerersList,
-							ParseException e) {
-						
+					public void done(List<ParseUser> offerersList, ParseException e) {
+						Log.d("debug", "1");
 						ArrayList<String> arrayList = new ArrayList<String>();
-						for(ParseObject offerer : offerersList){
-							if (offerer.get("currentCabId").equals(cabID)){							
-								arrayList.add(offerer.getString("objecetID"));
-								Toast.makeText(getApplicationContext(), offerer.getString("name"), Toast.LENGTH_SHORT).show();
+						if (e == null) {
+							//Integer i2 = new Integer(offerersList.size());
+							//Log.d("debug", "List size: " + i2.toString());
+							for (ParseUser offerer : offerersList) {
+								Log.d("debug", "55");
+								Log.d("debug", offerer.getString("name"));
+								if (offerer.getBoolean("offering") == true) {
+									Log.d("debug", offerer.getString("currentCabId"));
+									if (offerer.getString("currentCabId").equals(cabID)) {
+										Log.d("Test", "Offer");
+										Log.d("Test", offerer.getString("objectId"));
+										arrayList.add(offerer.getString("objectId"));
+										Integer i = new Integer(arrayList.size());
+										Log.d("Test", i.toString());
+										Log.d("Test", offerer.getString("name"));
+									}
+								}
+								Log.d("debug", "2");
+								Log.d("debug", cabID);
+								
+								// For each offerer in the arrayList, send a push notification asking them to accept/reject request
+								for(int i = 0; i < arrayList.size(); i ++){
+									// create an acceptance object to track responses
+									ParseObject acceptance = new ParseObject("Acceptance");
+									acceptance.put("cabID",cabID);
+									acceptance.put("offererID", arrayList.get(i));
+									acceptance.saveInBackground();
+								}								 
 							}
 						}
-						
-						//For each offerer in the arrayList, send a parse notification asking them to accept/reject request
-						
-						
 					}
-				});
+				});*/
 			}
 
 		});
@@ -145,15 +163,6 @@ public class ListOffersGUI extends AbstractGUIActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-					// delete request filter
-					saveFilter((ParseObject) currentUser.get("filter"));
-					getFilter().deleteInBackground();
-
-					currentUser.put("requesting", false);
-					currentUser.remove("filter");
-					currentUser.saveInBackground();	
-
-					finish();		
 				// delete request filter
 				saveFilter((ParseObject) currentUser.get("filter"));
 				getFilter().deleteInBackground();
@@ -161,9 +170,15 @@ public class ListOffersGUI extends AbstractGUIActivity {
 				currentUser.put("requesting", false);
 				currentUser.remove("filter");
 				currentUser.saveInBackground();
-				Intent intent = new Intent(ListOffersGUI.this,
-						MainMenuGUI.class);
-				startActivity(intent);
+
+				finish();
+				// delete request filter
+				saveFilter((ParseObject) currentUser.get("filter"));
+				getFilter().deleteInBackground();
+
+				currentUser.put("requesting", false);
+				currentUser.remove("filter");
+				currentUser.saveInBackground();
 				finish();
 			}
 		});

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.parse.ParseAnonymousUtils;
+import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class MainMenuGUI extends AbstractGUIActivity {
@@ -24,6 +26,10 @@ public class MainMenuGUI extends AbstractGUIActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		
+		ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+		installation.put("user", ParseUser.getCurrentUser());
+		installation.saveInBackground();
 
 		requestCabButton = (Button) findViewById(R.id.requestCab);
 		offerCabButton = (Button) findViewById(R.id.offerCab);
@@ -87,7 +93,8 @@ public class MainMenuGUI extends AbstractGUIActivity {
 		offerCabButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(View v) {			
+				
 				// TODO Auto-generated method stub
 				if (getOffering() == true) {
 					Intent intent = new Intent(MainMenuGUI.this,
